@@ -1,0 +1,1125 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>ComputeShaders</name>
+    </assembly>
+    <members>
+        <member name="T:ComputeShaders.ComputeShader">
+            <summary>
+            The main class for using compute shader class (Direct3D 11)
+            </summary>
+        </member>
+        <member name="P:ComputeShaders.ComputeShader.Device">
+            <summary>
+            The device connected to this compute shader.
+            </summary>
+        </member>
+        <member name="M:ComputeShaders.ComputeShader.CompileComputeShader(System.String,System.String,System.String)">
+            <summary>
+            Compile the compute shader from a file stored in the disk.
+            </summary>
+            <param name="shaderName">The path to the compute shader (relative to the solution this code is in)</param>
+            <param name="entryPoint">The main kernel function of the shader (1 kernel function for every compute shader class)</param>
+            <param name="targetProfile">The type and version of the shader. default = cs_5_0. (cs is for Compute shader) (5_0 is for shader model 5.0)</param>
+            <returns>Returns the byte code of the compiled shader</returns>
+        </member>
+        <member name="M:ComputeShaders.ComputeShader.Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="T:ComputeShaders.CPUAccessMode">
+            <summary>
+            An enum for the methods of accessing raw <see cref="T:ComputeShaders.ShaderResource`1"/> data using the cpu.
+            </summary>
+        </member>
+        <member name="F:ComputeShaders.CPUAccessMode.Read">
+            <summary>
+            The cpu can only read the raw data.
+            </summary>
+        </member>
+        <member name="F:ComputeShaders.CPUAccessMode.Write">
+            <summary>
+            The cpu can only write to the raw data.
+            </summary>
+        </member>
+        <member name="F:ComputeShaders.CPUAccessMode.ReadWrite">
+            <summary>
+            The cpu can both read from the raw data and write to it.
+            </summary>
+        </member>
+        <member name="T:ComputeShaders.CSCBuffer`1">
+            <summary>
+            A class that stores data for cbuffer (in the compute shader)
+            </summary>
+        </member>
+        <member name="P:ComputeShaders.CSCBuffer`1.Device">
+            <summary>
+            The device connected to this resource.
+            </summary>
+        </member>
+        <member name="M:ComputeShaders.CSCBuffer`1.UpdateBuffer(`0)">
+            <summary>
+            Updates the buffer data
+            </summary>
+            <param name="newData">the new data</param>
+        </member>
+        <member name="M:ComputeShaders.CSCBuffer`1.Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="T:ComputeShaders.CSDevice">
+            <summary>
+            The main class for running compute shaders (Direct3D 11)
+            </summary>
+        </member>
+        <member name="P:ComputeShaders.CSDevice.DeviceNativePointer">
+            <summary>
+            The <see cref="T:SharpDX.Direct3D11.Device"/> native pointer.
+            </summary>
+        </member>
+        <member name="P:ComputeShaders.CSDevice.CurrentShader">
+            <summary>
+            The shader that the device currently use. This is the shader that will run upon calling <see cref="M:ComputeShaders.CSDevice.Dispatch(System.Int32,System.Int32,System.Int32)"/>
+            <br>To change it call <see cref="M:ComputeShaders.CSDevice.SetComputeShader(ComputeShaders.ComputeShader)"/>.</br>
+            </summary>
+        </member>
+        <member name="M:ComputeShaders.CSDevice.#ctor(System.Int32,ComputeShaders.CSDeviceCreationFlags)">
+            <summary>
+            Creates a new device.
+            </summary>
+            <param name="gpuAdapterIndex">The index of the adapter to enumerate.</param>
+            <param name="gpuCreationgFlag">Describes parameters that are used to create a device.</param>
+        </member>
+        <member name="M:ComputeShaders.CSDevice.#ctor(System.IntPtr)">
+            <summary>
+            Creates a new CSDevice instance from an existing Direct3D11 device.
+            </summary>
+            <param name="deviceNativePointer">The device native pointer.</param>
+        </member>
+        <member name="M:ComputeShaders.CSDevice.CreateComputeShader(System.Byte[])">
+            <summary>
+            Creates a compute shader connected to this device.
+            </summary>
+            <param name="shaderByteCode">The byte code of the compiled shader. You can get the compiled byte array of a shader file using <see cref="M:ComputeShaders.ComputeShader.CompileComputeShader(System.String,System.String,System.String)"/></param>
+        </member>
+        <member name="M:ComputeShaders.CSDevice.CreateComputeShader(System.String,System.String,System.String)">
+            <summary>
+            Creates a compute shader connected to this device.
+            </summary>
+            <param name="shaderName">The path to the compute shader.</param>
+            <param name="entryPoint">The main kernel function of the shader</param>
+            <param name="targetProfile">The type and version of the shader. default = cs_5_0. The type and version of the shader. default = cs_5_0. (cs is for Compute shader) (5_0 is for shader model 5.0)</param>
+        </member>
+        <member name="M:ComputeShaders.CSDevice.CreateTexture2D(System.Int32,System.Int32,ComputeShaders.TextureFormat,System.Boolean)">
+            <summary>
+            Creates a new texture connected to this device.
+            </summary>
+            <param name="width">The width of the texture.</param>
+            <param name="height">The height of the texture.</param>
+            <param name="format">the format of the texture.</param>
+            <param name="allowSharing">Determines whether the created texture can be shared, if true then <see cref="M:ComputeShaders.CSTexture2D.Share(ComputeShaders.CSDevice)"/> can be called.</param>
+            <returns></returns>
+        </member>
+        <member name="M:ComputeShaders.CSDevice.CreateTexture2D(System.Drawing.Bitmap,System.Boolean)">
+            <summary>
+            Creates a new texture connected to this device containing <paramref name="bitmap"/> data.
+            </summary>
+            <param name="bitmap">The bitmap.</param>
+            <param name="allowSharing">Determines whether the created texture can be shared, if true then <see cref="M:ComputeShaders.CSTexture2D.Share(ComputeShaders.CSDevice)"/> can be called.</param>
+            <returns></returns>
+        </member>
+        <member name="M:ComputeShaders.CSDevice.CreateTexture2D(System.String,System.Boolean)">
+            <summary>
+            Creates a new texture connected to this device containing the image from <paramref name="imageRelativePath"/> data.
+            </summary>
+            <param name="imageRelativePath">The relative path to the image file.</param>
+            <param name="allowSharing">Determines whether the created texture can be shared, if true then <see cref="M:ComputeShaders.CSTexture2D.Share(ComputeShaders.CSDevice)"/> can be called.</param>
+            <returns></returns>
+        </member>
+        <member name="M:ComputeShaders.CSDevice.CreateTexture2D(System.Int32,System.Int32,ComputeShaders.TextureFormat,System.IntPtr,System.Boolean)">
+            <summary>
+            Creates a new texture connected to this device containing the data stored in <paramref name="dataPointer"/>.
+            </summary>
+            <param name="width">The width of the texture.</param>
+            <param name="height">The height of the texture.</param>
+            <param name="format">the format of the texture.</param>
+            <param name="dataPointer">The pointer that holds raw texture data.</param>
+            <param name="allowSharing">Determines whether the created texture can be shared, if true then <see cref="M:ComputeShaders.CSTexture2D.Share(ComputeShaders.CSDevice)"/> can be called.</param>
+            <returns></returns>
+        </member>
+        <member name="M:ComputeShaders.CSDevice.CreateTexture2DArray(System.Int32,System.Int32,System.Int32,ComputeShaders.TextureFormat,System.Boolean)">
+            <summary>
+            Creates a new texture connected to this device.
+            </summary>
+            <param name="width">The width of the texture array.</param>
+            <param name="height">The height of the texture array.</param>
+            <param name="numberOfTextures">The number of texture in the texture array.</param>
+            <param name="format">the format of the texture array.</param>
+            <param name="allowSharing">Determines whether the created texture array can be shared, if true then <see cref="M:ComputeShaders.CSTexture2DArray.Share(ComputeShaders.CSDevice)"/> can be called.</param>
+            <returns></returns>
+        </member>
+        <member name="M:ComputeShaders.CSDevice.CreateTexture2DArray(System.Boolean,System.Drawing.Bitmap[])">
+            <summary>
+            Creates a new texture connected to this device where every slice in the texture array contains the data from its equivalent slice from <paramref name="bitmaps"/>.
+            </summary>
+            <param name="allowSharing">Determines whether the created texture can be shared, if true then <see cref="M:ComputeShaders.CSTexture2DArray.Share(ComputeShaders.CSDevice)"/> can be called.</param>
+            <param name="bitmaps">The bitmaps (all with the same width, height, and format).</param>
+            <returns></returns>
+        </member>
+        <member name="M:ComputeShaders.CSDevice.CreateTexture2DArray(System.Int32,System.Int32,ComputeShaders.TextureFormat,System.Boolean,System.IntPtr[])">
+            <summary>
+            Creates a new texture connected to this device where every slice in the texture array contains the data from its equivalent slice from <paramref name="dataPointers"/>.
+            </summary>
+            <param name="width">The width of the texture.</param>
+            <param name="height">The height of the texture.</param>
+            <param name="format">the format of the texture.</param>
+            <param name="allowSharing">Determines whether the created texture can be shared, if true then <see cref="M:ComputeShaders.CSTexture2DArray.Share(ComputeShaders.CSDevice)"/> can be called.</param>
+            <param name="dataPointers">The pointer that holds raw texture data.</param>
+            <returns></returns>
+        </member>
+        <member name="M:ComputeShaders.CSDevice.CreateTexture3D(System.Int32,System.Int32,System.Int32,ComputeShaders.TextureFormat,System.Boolean)">
+            <summary>
+            Create a new empty 3D texture.
+            </summary>
+            <param name="width">The width of the texture.</param>
+            <param name="height">The height of the texture.</param>
+            <param name="depth">The depth of the texture.</param>
+            <param name="format">The format texture.</param>
+            <param name="allowSharing">Determines whether the created texture can be shared, if true then <see cref="M:ComputeShaders.CSTexture3D.Share(ComputeShaders.CSDevice)"/> can be called.</param>
+            <returns></returns>
+        </member>
+        <member name="M:ComputeShaders.CSDevice.CreateTexture3D(System.Int32,System.Int32,System.Int32,ComputeShaders.TextureFormat,System.IntPtr,System.Boolean)">
+            <summary>
+            Create a new 3D texture initialized with data from <paramref name="initData"/>.
+            </summary>
+            <param name="width">The width of the texture.</param>
+            <param name="height">The height of the texture.</param>
+            <param name="depth">The depth of the texture.</param>
+            <param name="format">The format texture.</param>
+            <param name="initData">Pointer to the data.</param>
+            <param name="allowSharing">Determines whether the created texture can be shared, if true then <see cref="M:ComputeShaders.CSTexture3D.Share(ComputeShaders.CSDevice)"/> can be called.</param>
+            <returns></returns>
+        </member>
+        <member name="M:ComputeShaders.CSDevice.CreateBuffer``1(``0,System.Int32)">
+            <summary>
+            Creates a new constant buffer connected to this device that stores <paramref name="data"/>.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="data">The data to be stored in the buffer.</param>
+            <param name="dataSizeInBytes">The size of the data in bytes.</param>
+            <returns></returns>
+        </member>
+        <member name="M:ComputeShaders.CSDevice.CreateStructuredBuffer``1(System.IntPtr,System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Creates a new StructuredBuffer connected to this device containing the data in <paramref name="dataPointer"/>.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="dataPointer">The pointer to the data.</param>
+            <param name="length">Number of elements.</param>
+            <param name="eachElementSizeInBytes">The size of an element in <paramref name="dataPointer"/> in bytes.</param>
+            <param name="allowSharing">Determines whether the created texture can be shared, if true then <see cref="M:ComputeShaders.CSStructuredBuffer`1.Share(ComputeShaders.CSDevice)"/> can be called.</param>
+            <returns></returns>
+        </member>
+        <member name="M:ComputeShaders.CSDevice.CreateStructuredBuffer``1(``0[],System.Int32,System.Boolean)">
+            <summary>
+            Creates a new StructuredBuffer connected to this device containing <paramref name="array"/> data.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="array">The array to be stored in the buffer.</param>
+            <param name="eachElementSizeInBytes">The size of an element in <paramref name="array"/> in bytes.</param>
+            <param name="allowSharing">Determines whether the created texture can be shared, if true then <see cref="M:ComputeShaders.CSStructuredBuffer`1.Share(ComputeShaders.CSDevice)"/> can be called.</param>
+            <returns></returns>
+        </member>
+        <member name="M:ComputeShaders.CSDevice.CreateStructuredBuffer``1(System.Collections.Generic.List{``0},System.Int32,System.Boolean)">
+            <summary>
+            Creates a new StructuredBuffer connected to this device containing <paramref name="list"/> data.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="list">The list to be stored.</param>
+            <param name="eachElementSizeInBytes">The size of an element in <paramref name="list"/> in bytes.</param>
+            <param name="allowSharing">Determines whether the created texture can be shared, if true then <see cref="M:ComputeShaders.CSStructuredBuffer`1.Share(ComputeShaders.CSDevice)"/> can be called.</param>
+            <returns></returns>
+        </member>
+        <member name="M:ComputeShaders.CSDevice.SetRWTexture2D(ComputeShaders.CSTexture2D,System.Int32)">
+            <summary>
+            connects the texture to a RWTexture2D in the current compute shader.
+            This function is can be called only once, even if a new compute shader is set using <see cref="M:ComputeShaders.CSDevice.SetComputeShader(ComputeShaders.ComputeShader)"/>. The only case to call this again is if a new compute shader is set and the <paramref name="register_uav_index"/>
+            in that new shader is different from the old shader, then this function must be called again with <paramref name="register_uav_index"/> be the new uav index.
+            </summary>
+            <param name="texture">The texture to be set.</param>
+            <param name="register_uav_index">the register index of the texture in the compute shader.</param>
+        </member>
+        <member name="M:ComputeShaders.CSDevice.SetRWTexture2DArray(ComputeShaders.CSTexture2DArray,System.Int32)">
+            <summary>
+            connects the texture to a RWTexture2DArray in the computeShader.
+            This function is can be called only once, even if a new compute shader is set using <see cref="M:ComputeShaders.CSDevice.SetComputeShader(ComputeShaders.ComputeShader)"/>. The only case to call this again is if a new compute shader is set and the <paramref name="register_uav_index"/>
+            in that new shader is different from the old shader, then this function must be called again with <paramref name="register_uav_index"/> be the new uav index.
+            </summary>
+            <param name="textureArray">The texture to be set.</param>
+            <param name="register_uav_index">the register index of the texture in the compute shader.</param>
+        </member>
+        <member name="M:ComputeShaders.CSDevice.SetBuffer``1(ComputeShaders.CSCBuffer{``0},System.Int32)">
+            <summary>
+            connects the buffer to a cbuffer in the computeShader. 
+            This function is can be called only once, even if a new compute shader is set using <see cref="M:ComputeShaders.CSDevice.SetComputeShader(ComputeShaders.ComputeShader)"/>. The only case to call this again is if a new compute shader is set and the <paramref name="register_buffer_index"/>
+            in that new shader is different from the old shader, then this function must be called again with <paramref name="register_buffer_index"/> be the new uav index.
+            </summary>
+            <param name="cSBuffer">The buffer to be set.</param>
+            <param name="register_buffer_index">the register index of the buffer in the compute shader.</param>
+        </member>
+        <member name="M:ComputeShaders.CSDevice.SetRWStructuredBuffer``1(ComputeShaders.CSStructuredBuffer{``0},System.Int32)">
+            <summary>
+            connects the structured buffer to a RWStructuredBuffer in the computeShader.
+            This function is can be called only once, even if a new compute shader is set using <see cref="M:ComputeShaders.CSDevice.SetComputeShader(ComputeShaders.ComputeShader)"/>. The only case to call this again is if a new compute shader is set and the <paramref name="register_uav_index"/>
+            in that new shader is different from the old shader, then this function must be called again with <paramref name="register_uav_index"/> be the new uav index.
+            </summary>
+            <param name="structuredBuffer">The structured buffer to be set.</param>
+            <param name="register_uav_index">the register index of the buffer in the compute shader</param>
+        </member>
+        <member name="M:ComputeShaders.CSDevice.SetUnorderedAccessView``1(ComputeShaders.ShaderResource{``0},System.Int32)">
+            <summary>
+            connects the resource to a read/write resource in the computeShader (UAV).
+            This function is can be called only once, even if a new compute shader is set using <see cref="M:ComputeShaders.CSDevice.SetComputeShader(ComputeShaders.ComputeShader)"/>. The only case to call this again is if a new compute shader is set and the <paramref name="register_uav_index"/>
+            in that new shader is different from the old shader, then this function must be called again with <paramref name="register_uav_index"/> be the new uav index.
+            </summary>
+            <param name="resource">The resource to be set.</param>
+            <param name="register_uav_index">the register index of the read/write resource in the compute shader</param>
+        </member>
+        <member name="M:ComputeShaders.CSDevice.Flush">
+            <summary>
+            Sends queued-up commands in the command buffer to the graphics processing unit (GPU).
+            </summary>
+        </member>
+        <member name="M:ComputeShaders.CSDevice.Synchronize">
+            <summary>
+            Synchronizes the gpu with the cpu.
+            </summary>
+        </member>
+        <member name="M:ComputeShaders.CSDevice.Dispatch(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Runs the current compute shader in use.
+            <br>To know the current compute shader in use see <see cref="P:ComputeShaders.CSDevice.CurrentShader"/>.</br>
+            </summary>
+            <param name="threadsX">Number of threads in the x-axis</param>
+            <param name="threadsY">Number of threads in the y-axis</param>
+            <param name="threadsZ">Number of threads in the z-axis</param>
+        </member>
+        <member name="M:ComputeShaders.CSDevice.SetComputeShader(ComputeShaders.ComputeShader)">
+            <summary>
+            Sets the current compute shader in use to <paramref name="newShader"/>.
+            </summary>
+            <param name="newShader">The new compute shader to use.</param>
+        </member>
+        <member name="M:ComputeShaders.CSDevice.Dispose">
+            <summary>
+            Disposes the unmanaged data. 
+            </summary>
+        </member>
+        <member name="M:ComputeShaders.CSDevice.SameNativeDevice(ComputeShaders.CSDevice)">
+            <summary>
+            Returns whether this device and <paramref name="other"/> share the same native d3d11 device.
+            </summary>
+            <param name="other"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ComputeShaders.CSDeviceCreationFlags">
+            <summary>
+            Describes parameters that are used to create a device. see https://learn.microsoft.com/en-us/windows/win32/api/d3d11/ne-d3d11-d3d11_create_device_flag for more information.
+            </summary>
+        </member>
+        <member name="F:ComputeShaders.CSDeviceCreationFlags.SingleThreaded">
+            <summary>
+            Use this flag if your application will only call methods of Direct3D 11 interfaces from a single thread. By default, the ID3D11Device object is thread-safe.
+            By using this flag, you can increase performance. However, if you use this flag and your application calls methods of Direct3D 11 interfaces from multiple threads, undefined behavior might result.
+            </summary>
+        </member>
+        <member name="F:ComputeShaders.CSDeviceCreationFlags.Debug">
+            <summary>
+            Creates a device that supports the debug layer.
+            To use this flag, you must have D3D11*SDKLayers.dll installed; otherwise, device creation fails. To get D3D11_1SDKLayers.dll, install the SDK for Windows 8.
+            To see the debug information while using compute shaders use "Immediate Window" in visual studio.
+            </summary>
+        </member>
+        <member name="F:ComputeShaders.CSDeviceCreationFlags.SwitchToRef">
+            <summary>
+            This flag is not supported in Direct3D 11.
+            </summary>
+        </member>
+        <member name="F:ComputeShaders.CSDeviceCreationFlags.PreventThreadingOptimizations">
+            <summary>
+            Prevents multiple threads from being created. When this flag is used with a Windows Advanced Rasterization Platform (WARP) device, no additional threads will be created by WARP
+            and all rasterization will occur on the calling thread. This flag is not recommended for general use. See remarks.
+            </summary>
+        </member>
+        <member name="F:ComputeShaders.CSDeviceCreationFlags.BgraSupport">
+            <summary>
+            Creates a device that supports BGRA formats (<see cref="F:ComputeShaders.TextureFormat.B8G8R8A8_UNorm"/> and <see cref="F:ComputeShaders.TextureFormat.B8G8R8A8_UNorm_SRgb"/>). All 10level9 and higher hardware with WDDM 1.1+ drivers support BGRA formats.
+            </summary>
+        </member>
+        <member name="F:ComputeShaders.CSDeviceCreationFlags.Debuggable">
+            <summary>
+            This value is not supported until Direct3D 11.1
+            </summary>
+        </member>
+        <member name="F:ComputeShaders.CSDeviceCreationFlags.PreventAlteringLayerSettingsFromRegistry">
+            <summary>
+            This value is not supported until Direct3D 11.1
+            </summary>
+        </member>
+        <member name="F:ComputeShaders.CSDeviceCreationFlags.DisableGpuTimeout">
+            <summary>
+            This value is not supported until Direct3D 11.1.
+            </summary>
+        </member>
+        <member name="F:ComputeShaders.CSDeviceCreationFlags.VideoSupport">
+            <summary>
+            This value is not supported until Direct3D 11.1.
+            </summary>
+        </member>
+        <member name="F:ComputeShaders.CSDeviceCreationFlags.None">
+            <summary>
+            None
+            </summary>
+        </member>
+        <member name="T:ComputeShaders.CSStructuredBuffer`1">
+            <summary>
+            A class that stores an array of data for RWStructuredBuffer (in the compute shader)
+            </summary>
+            <typeparam name="T"></typeparam>
+        </member>
+        <member name="P:ComputeShaders.CSStructuredBuffer`1.Length">
+            <summary>
+            The number of elements in the buffer.
+            </summary>
+        </member>
+        <member name="P:ComputeShaders.CSStructuredBuffer`1.ElementSizeInBytes">
+            <summary>
+            The size of each element in the buffer in bytes.
+            </summary>
+        </member>
+        <member name="M:ComputeShaders.CSStructuredBuffer`1.SetData(`0[])">
+            <summary>
+            Updates the data stored in the buffer using the cpu. Note that <see cref="M:ComputeShaders.CSStructuredBuffer`1.SetData(`0[])"/> is faster than <see cref="M:ComputeShaders.ShaderResource`1.AccessRawData(System.Action{ComputeShaders.TextureDataBox},ComputeShaders.CPUAccessMode)"/> only on small scales. 
+            It is recommended to use <see cref="M:ComputeShaders.ShaderResource`1.AccessRawData(System.Action{ComputeShaders.TextureDataBox},ComputeShaders.CPUAccessMode)"/> instead of <see cref="M:ComputeShaders.CSStructuredBuffer`1.SetData(`0[])"/> if the buffer size in bytes is bigger than ~1,200,000.
+            </summary>
+            <param name="array">The new data</param>
+        </member>
+        <member name="M:ComputeShaders.CSStructuredBuffer`1.SetData(System.Collections.Generic.List{`0})">
+            <summary>
+            Updates the data stored in the buffer using the cpu.
+            </summary>
+            <param name="list">The new data</param>
+        </member>
+        <member name="M:ComputeShaders.CSStructuredBuffer`1.GetData(`0[]@)">
+            <summary>
+            Copy the data in the buffer to the array using the cpu.
+            </summary>
+            <param name="array">the array to copy to</param>
+        </member>
+        <member name="M:ComputeShaders.CSStructuredBuffer`1.GetData(System.Collections.Generic.List{`0}@)">
+            <summary>
+            Copy the data in the buffer to the list using the cpu.
+            NOTE: <see cref="P:System.Collections.Generic.List`1.Count"/> of <paramref name="list"/> must be bigger than or equal to <see cref="P:ComputeShaders.CSStructuredBuffer`1.Length"/>
+            </summary>
+            <param name="list">the list to copy to</param>
+        </member>
+        <member name="M:ComputeShaders.CSStructuredBuffer`1.UpdateSubresource(System.IntPtr)">
+            <summary>
+            Updates the resource with the raw data from <paramref name="dataPointer"/> using the cpu.
+            <br>Note that this function avoids the trouble of dealing with byte alignment in textures. So data here can be passed without the need to be padded.</br>
+            </summary>
+            <param name="dataPointer">The pointer to the data.</param>
+        </member>
+        <member name="M:ComputeShaders.CSStructuredBuffer`1.CopyTo(ComputeShaders.CSStructuredBuffer{`0})">
+            <summary>
+            Copy the contents of this resource to <paramref name="destination"/>.
+            <br>Note that if both resources share the same device, then the copy is done on the GPU, otherwise it is done on the CPU (<see cref="P:ComputeShaders.ShaderResource`1.CPU_ReadWrite"/> must be true for both)</br>
+            </summary>
+            <param name="destination"></param>
+        </member>
+        <member name="M:ComputeShaders.CSStructuredBuffer`1.CopyTo(ComputeShaders.CSStructuredBuffer{`0},System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Copy some contents of this resource to <paramref name="destination"/>.
+            <br>Note that if both resources share the same device, then the copy is done on the GPU, otherwise it is done on the CPU (<see cref="P:ComputeShaders.ShaderResource`1.CPU_ReadWrite"/> must be true for both)</br>
+            </summary>
+            <param name="destination"></param>
+            <param name="sourceStartIndex">The element index to start copy from.</param>
+            <param name="destinationStartIndex">The element index to start copy to.</param>
+            <param name="count">The number of elements to copy.</param>
+        </member>
+        <member name="M:ComputeShaders.CSStructuredBuffer`1.EnableCPU_Raw_ReadWrite">
+            <inheritdoc/>
+        </member>
+        <member name="M:ComputeShaders.CSStructuredBuffer`1.Share(ComputeShaders.CSDevice)">
+            <summary>
+            Creates a resource that Gives its device (<paramref name="device"/>) access to a shared resource (this resource) created on a different device (this resource's device). In other words, it creates a resource with <paramref name="device"/> that is connected to this resource's device through this resource. There are important notes regarding shared resources:
+            <br>- If any of the two shared resources (the result resource and this resource) is updated, <see cref="M:ComputeShaders.CSDevice.Flush"/> must be called.</br>
+            <br>- In some cases, updating a shared resource and using <see cref="M:ComputeShaders.CSDevice.Flush"/> might causes problems if that shared resource was used with an asynchronous function. For example, when <see cref="M:ComputeShaders.CSDevice.Flush"/> is used then <see cref="M:ComputeShaders.ShaderResource`1.CopyResource(ComputeShaders.ShaderResource{`0})"/> is called using that shared resources. In such cases, it is adviced to call <see cref="M:ComputeShaders.CSDevice.Synchronize"/> afterwards.</br>
+            </summary>
+            <param name="device">another device.</param>
+            <returns></returns>
+        </member>
+        <member name="M:ComputeShaders.CSStructuredBuffer`1.Share(System.IntPtr)">
+            <summary>
+            Creates a resource that Gives its device (<paramref name="devicePointer"/>) access to a shared resource (this resource) created on a different device (this resource's device). In other words, it creates a resource with <paramref name="devicePointer"/> that is connected to this resource's device through this resource. There are important notes regarding shared resources:
+            <br>- If any of the two shared resources (the result resource and this resource) is updated, <see cref="M:ComputeShaders.CSDevice.Flush"/> must be called.</br>
+            <br>- In some cases, updating a shared resource and using <see cref="M:ComputeShaders.CSDevice.Flush"/> might causes problems if that shared resource was used with an asynchronous function. For example, when <see cref="M:ComputeShaders.CSDevice.Flush"/> is used then <see cref="M:ComputeShaders.ShaderResource`1.CopyResource(ComputeShaders.ShaderResource{`0})"/> is called using that shared resources. In such cases, it is adviced to call <see cref="M:ComputeShaders.CSDevice.Synchronize"/> afterwards.</br>
+            </summary>
+            <param name="devicePointer">another device.</param>
+            <returns></returns>
+        </member>
+        <member name="M:ComputeShaders.CSStructuredBuffer`1.CreateUAV">
+            <inheritdoc/>
+        </member>
+        <member name="T:ComputeShaders.CSTexture2D">
+            <summary>
+            The class that holds the texture data.
+            </summary>
+        </member>
+        <member name="P:ComputeShaders.CSTexture2D.Width">
+            <summary>
+            The width of the texture.
+            </summary>
+        </member>
+        <member name="P:ComputeShaders.CSTexture2D.Height">
+            <summary>
+            The height of the texture.
+            </summary>
+        </member>
+        <member name="P:ComputeShaders.CSTexture2D.Format">
+            <summary>
+            The format of the texture.
+            </summary>
+        </member>
+        <member name="M:ComputeShaders.CSTexture2D.#ctor(System.IntPtr)">
+            <summary>
+            Create a new CStexture2D instance using a direct3D11 texture pointer.
+            </summary>
+            <param name="nativePointer">The texture pointer.</param>
+        </member>
+        <member name="M:ComputeShaders.CSTexture2D.CopyTo(ComputeShaders.CSTexture2D)">
+            <summary>
+            Copy the contents of this resource to <paramref name="destination"/>.
+            <br>Note that if both resources share the same device, then the copy is done on the GPU, otherwise it is done on the CPU (<see cref="P:ComputeShaders.ShaderResource`1.CPU_ReadWrite"/> must be true for both)</br>
+            </summary>
+            <param name="destination"></param>
+        </member>
+        <member name="M:ComputeShaders.CSTexture2D.CopyTo(ComputeShaders.CSTexture2D,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Copies data to <paramref name="destination"/>.
+            <br>Note that if both resources share the same device, then the copy is done on the GPU, otherwise it is done on the CPU (<see cref="P:ComputeShaders.ShaderResource`1.CPU_ReadWrite"/> must be true for both)</br>
+            </summary>
+            <param name="destination"></param>
+            <param name="srcX">The x-coordinate of the pixel to start copy from.</param>
+            <param name="srcY">The y-coordinate of the pixel to start copy from.</param>
+            <param name="dstX">The x-coordinate of the pixel to start copy to.</param>
+            <param name="dstY">The y-coordinate of the pixel to start copy to.</param>
+            <param name="widthCount">the width of the region to copy in pixels.</param>
+            <param name="heightCount">the height of the region to copy in pixels.</param>
+        </member>
+        <member name="M:ComputeShaders.CSTexture2D.Share(ComputeShaders.CSDevice)">
+            <summary>
+            Creates a resource that Gives its device (<paramref name="device"/>) access to a shared resource (this resource) created on a different device (this resource's device). In other words, it creates a resource with <paramref name="device"/> that is connected to this resource's device through this resource. There are important notes regarding shared resources:
+            <br>- If any of the two shared resources (the result resource and this resource) is updated, <see cref="M:ComputeShaders.CSDevice.Flush"/> must be called.</br>
+            <br>- In some cases, updating a shared resource and using <see cref="M:ComputeShaders.CSDevice.Flush"/> might causes problems if that shared resource was used with an asynchronous function. For example, when <see cref="M:ComputeShaders.CSDevice.Flush"/> is used then <see cref="M:ComputeShaders.ShaderResource`1.CopyResource(ComputeShaders.ShaderResource{`0})"/> is called using that shared resources. In such cases, it is adviced to call <see cref="M:ComputeShaders.CSDevice.Synchronize"/> afterwards.</br>
+            </summary>
+            <param name="device">another device.</param>
+            <returns></returns>
+        </member>
+        <member name="M:ComputeShaders.CSTexture2D.Share(System.IntPtr)">
+            <summary>
+            Creates a resource that Gives its device (<paramref name="devicePointer"/>) access to a shared resource (this resource) created on a different device (this resource's device). In other words, it creates a resource with <paramref name="devicePointer"/> that is connected to this resource's device through this resource. There are important notes regarding shared resources:
+            <br>- If any of the two shared resources (the result resource and this resource) is updated, <see cref="M:ComputeShaders.CSDevice.Flush"/> must be called.</br>
+            <br>- In some cases, updating a shared resource and using <see cref="M:ComputeShaders.CSDevice.Flush"/> might causes problems if that shared resource was used with an asynchronous function. For example, when <see cref="M:ComputeShaders.CSDevice.Flush"/> is used then <see cref="M:ComputeShaders.ShaderResource`1.CopyResource(ComputeShaders.ShaderResource{`0})"/> is called using that shared resources. In such cases, it is adviced to call <see cref="M:ComputeShaders.CSDevice.Synchronize"/> afterwards.</br>
+            </summary>
+            <param name="devicePointer">another device.</param>
+            <returns></returns>
+        </member>
+        <member name="M:ComputeShaders.CSTexture2D.UpdateSubresource(System.IntPtr)">
+            <summary>
+            Updates the entire resource with the raw data from <paramref name="dataPointer"/> using the cpu.
+            <br>Note that this function avoids the trouble of dealing with byte alignment in textures. So data here can be passed without the need to be padded.</br>
+            </summary>
+            <param name="dataPointer">The pointer to the data.</param>
+        </member>
+        <member name="M:ComputeShaders.CSTexture2D.EnableCPU_Raw_ReadWrite">
+            <inheritdoc/>
+        </member>
+        <member name="M:ComputeShaders.CSTexture2D.CreateUAV">
+            <inheritdoc/>
+        </member>
+        <member name="T:ComputeShaders.CSTexture2DArray">
+            <summary>
+            The class that holds the texture array data.
+            </summary>
+        </member>
+        <member name="P:ComputeShaders.CSTexture2DArray.Width">
+            <summary>
+            The width of the texture
+            </summary>
+        </member>
+        <member name="P:ComputeShaders.CSTexture2DArray.Height">
+            <summary>
+            The height of the texture
+            </summary>
+        </member>
+        <member name="P:ComputeShaders.CSTexture2DArray.Textures">
+            <summary>
+            The number of textures in the texture array
+            </summary>
+        </member>
+        <member name="P:ComputeShaders.CSTexture2DArray.Format">
+            <summary>
+            The format of the texture
+            </summary>
+        </member>
+        <member name="M:ComputeShaders.CSTexture2DArray.#ctor(System.IntPtr,ComputeShaders.TextureFormat)">
+            <summary>
+            Create a new texture array using a texture array pointer
+            </summary>
+            <param name="nativePointer">The texture array pointer</param>
+            <param name="format">The format of the texture</param>
+        </member>
+        <member name="M:ComputeShaders.CSTexture2DArray.EnableCPU_Raw_ReadWrite">
+            <inheritdoc/>
+        </member>
+        <member name="M:ComputeShaders.CSTexture2DArray.CopyTo(ComputeShaders.CSTexture2DArray)">
+            <summary>
+            Copy the contents of this resource to <paramref name="destination"/>.
+            <br>Note that if both resources share the same device, then the copy is done on the GPU, otherwise it is done on the CPU (<see cref="P:ComputeShaders.ShaderResource`1.CPU_ReadWrite"/> must be true for both)</br>
+            </summary>
+            <param name="destination"></param>
+        </member>
+        <member name="M:ComputeShaders.CSTexture2DArray.CopyTo(ComputeShaders.CSTexture2DArray,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Copy the contents of this resource to <paramref name="destination"/>.
+            <br>Note that if both resources share the same device, then the copy is done on the GPU, otherwise it is done on the CPU (<see cref="P:ComputeShaders.ShaderResource`1.CPU_ReadWrite"/> must be true for both)</br>
+            </summary>
+            <param name="destination"></param>
+            <param name="srcX">The x index to start copying from.</param>
+            <param name="srcY">The y index to start copying from.</param>
+            <param name="srcZ">The z index to start copying from.</param>
+            <param name="dstX">The x index to start copying to.</param>
+            <param name="dstY">The y index to start copying to.</param>
+            <param name="dstZ">The z index to start copying to.</param>
+            <param name="widthCount">The number of pixels to copy along the x-axis.</param>
+            <param name="heightCount">The number of pixels to copy along the y-axis.</param>
+            <param name="depthCount">The number of pixels to copy along the z-axis.</param>
+        </member>
+        <member name="M:ComputeShaders.CSTexture2DArray.CopySliceTo(ComputeShaders.CSTexture2D,System.Int32)">
+            <summary>
+            Copies an entire slice (a texture from the texutre array) to <paramref name="destination"/>.
+            </summary>
+            <param name="destination">The texture to copy to.</param>
+            <param name="sliceIndex">The index to the slice to copy from.</param>
+        </member>
+        <member name="M:ComputeShaders.CSTexture2DArray.CopySliceTo(ComputeShaders.CSTexture2D,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Copies a slice (a texture from the texutre array), starting from (<paramref name="srcX"/>, <paramref name="srcY"/>) to <paramref name="destination"/> starting from (<paramref name="dstX"/>, <paramref name="dstY"/>).
+            </summary>
+            <param name="destination">The texture to copy to.</param>
+            <param name="sliceIndex">The index to the slice to copy from.</param>
+            <param name="widthCount">The number of pixels to copy along the x-axis.</param>
+            <param name="heightCount">The number of pixels to copy along the y-axis.</param>
+            <param name="srcX">The x index to start copying from.</param>
+            <param name="srcY">The y index to start copying from.</param>
+            <param name="dstX">The x index to start copying to.</param>
+            <param name="dstY">The y index to start copying to.</param>
+        </member>
+        <member name="M:ComputeShaders.CSTexture2DArray.AccessSliceRawData(System.Action{ComputeShaders.TextureDataBox},ComputeShaders.CPUAccessMode,System.Int32)">
+            <summary>
+            Gives the cpu access to the raw data stored in a slice (a single texture in the texture array) in the resource (by mapping https://learn.microsoft.com/en-us/windows/win32/api/d3d11/ns-d3d11-d3d11_mapped_subresource). During mapping:
+            <br>- GPU access to the resource is denied.</br>
+            <br>- The size of the first dimension of the resource (length in buffer, width in texture...) in bytes is rounded to the closest multiple of 16 that is larger than or equal to the original size.</br>
+            <br>Note that <see cref="P:ComputeShaders.ShaderResource`1.CPU_ReadWrite"/> must be true, and that all the accessing can only be done inside <paramref name="accessAction"/>..</br>
+            </summary>
+            <param name="accessAction">The action to access the data.</param>
+            <param name="mode">The mode of access.</param>
+            <param name="sliceIndex">The index of the texture (slice) in the texture array.</param>
+        </member>
+        <member name="M:ComputeShaders.CSTexture2DArray.Share(ComputeShaders.CSDevice)">
+            <summary>
+            Creates a resource that Gives its device (<paramref name="device"/>) access to a shared resource (this resource) created on a different device (this resource's device). In other words, it creates a resource with <paramref name="device"/> that is connected to this resource's device through this resource. There are important notes regarding shared resources:
+            <br>- If any of the two shared resources (the result resource and this resource) is updated, <see cref="M:ComputeShaders.CSDevice.Flush"/> must be called.</br>
+            <br>- In some cases, updating a shared resource and using <see cref="M:ComputeShaders.CSDevice.Flush"/> might causes problems if that shared resource was used with an asynchronous function. For example, when <see cref="M:ComputeShaders.CSDevice.Flush"/> is used then <see cref="M:ComputeShaders.ShaderResource`1.CopyResource(ComputeShaders.ShaderResource{`0})"/> is called using that shared resources. In such cases, it is adviced to call <see cref="M:ComputeShaders.CSDevice.Synchronize"/> afterwards.</br>
+            </summary>
+            <param name="device">another device.</param>
+            <returns></returns>
+        </member>
+        <member name="M:ComputeShaders.CSTexture2DArray.Share(System.IntPtr)">
+            <summary>
+            Creates a resource that Gives its device (<paramref name="devicePointer"/>) access to a shared resource (this resource) created on a different device (this resource's device). In other words, it creates a resource with <paramref name="devicePointer"/> that is connected to this resource's device through this resource. There are important notes regarding shared resources:
+            <br>- If any of the two shared resources (the result resource and this resource) is updated, <see cref="M:ComputeShaders.CSDevice.Flush"/> must be called.</br>
+            <br>- In some cases, updating a shared resource and using <see cref="M:ComputeShaders.CSDevice.Flush"/> might causes problems if that shared resource was used with an asynchronous function. For example, when <see cref="M:ComputeShaders.CSDevice.Flush"/> is used then <see cref="M:ComputeShaders.ShaderResource`1.CopyResource(ComputeShaders.ShaderResource{`0})"/> is called using that shared resources. In such cases, it is adviced to call <see cref="M:ComputeShaders.CSDevice.Synchronize"/> afterwards.</br>
+            </summary>
+            <param name="devicePointer">another device.</param>
+            <returns></returns>
+        </member>
+        <member name="M:ComputeShaders.CSTexture2DArray.UpdateSubresource(System.IntPtr,System.Int32)">
+            <summary>
+            Updates a slice (a subresource) in the texture array with the raw data from <paramref name="dataPointer"/> using the cpu.
+            <br>Note that this function avoids the trouble of dealing with byte alignment in textures. So data here can be passed without the need to be padded.</br>
+            </summary>
+            <param name="dataPointer">The pointer to the data.</param>
+            <param name="sliceIndex"></param>
+        </member>
+        <member name="M:ComputeShaders.CSTexture2DArray.CreateUAV">
+            <inheritdoc/>
+        </member>
+        <member name="T:ComputeShaders.CSTexture3D">
+            <summary>
+            The class for 3d textures in d3d11.
+            </summary>
+        </member>
+        <member name="P:ComputeShaders.CSTexture3D.Width">
+            <summary>
+            The width of the texture.
+            </summary>
+        </member>
+        <member name="P:ComputeShaders.CSTexture3D.Height">
+            <summary>
+            The height of the texture.
+            </summary>
+        </member>
+        <member name="P:ComputeShaders.CSTexture3D.Depth">
+            <summary>
+            The depth of the texture.
+            </summary>
+        </member>
+        <member name="P:ComputeShaders.CSTexture3D.Format">
+            <summary>
+            The format of the texture
+            </summary>
+        </member>
+        <member name="M:ComputeShaders.CSTexture3D.EnableCPU_Raw_ReadWrite">
+            <inheritdoc/>
+        </member>
+        <member name="M:ComputeShaders.CSTexture3D.UpdateSubresource(System.IntPtr)">
+            <summary>
+            Updates the entire resource with the raw data from <paramref name="dataPointer"/> using the cpu.
+            <br>Note that this function avoids the trouble of dealing with byte alignment in textures. So data here can be passed without the need to be padded.</br>
+            </summary>
+            <param name="dataPointer">The pointer to the data.</param>
+        </member>
+        <member name="M:ComputeShaders.CSTexture3D.CopyTo(ComputeShaders.CSTexture3D)">
+            <summary>
+            Copies the entire contents of this resource to <paramref name="destination"/>.
+            <br>Note that if both resources share the same device, then the copy is done on the GPU, otherwise it is done on the CPU (<see cref="P:ComputeShaders.ShaderResource`1.CPU_ReadWrite"/> must be true for both)</br>
+            </summary>
+            <param name="destination"></param>
+        </member>
+        <member name="M:ComputeShaders.CSTexture3D.CopyTo(ComputeShaders.CSTexture3D,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Copy the contents of this resource to <paramref name="destination"/>.
+            <br>Note that if both resources share the same device, then the copy is done on the GPU, otherwise it is done on the CPU (<see cref="P:ComputeShaders.ShaderResource`1.CPU_ReadWrite"/> must be true for both)</br>
+            </summary>
+            <param name="destination"></param>
+            <param name="srcX">The x index to start copying from.</param>
+            <param name="srcY">The y index to start copying from.</param>
+            <param name="srcZ">The z index to start copying from.</param>
+            <param name="dstX">The x index to start copying to.</param>
+            <param name="dstY">The y index to start copying to.</param>
+            <param name="dstZ">The z index to start copying to.</param>
+            <param name="widthCount">The number of pixels to copy along the x-axis.</param>
+            <param name="heightCount">The number of pixels to copy along the y-axis.</param>
+            <param name="depthCount">The number of pixels to copy along the z-axis.</param>
+        </member>
+        <member name="M:ComputeShaders.CSTexture3D.Share(ComputeShaders.CSDevice)">
+            <summary>
+            Creates a resource that Gives its device (<paramref name="device"/>) access to a shared resource (this resource) created on a different device (this resource's device). In other words, it creates a resource with <paramref name="device"/> that is connected to this resource's device through this resource. There are important notes regarding shared resources:
+            <br>- If any of the two shared resources (the result resource and this resource) is updated, <see cref="M:ComputeShaders.CSDevice.Flush"/> must be called.</br>
+            <br>- In some cases, updating a shared resource and using <see cref="M:ComputeShaders.CSDevice.Flush"/> might causes problems if that shared resource was used with an asynchronous function. For example, when <see cref="M:ComputeShaders.CSDevice.Flush"/> is used then <see cref="M:ComputeShaders.ShaderResource`1.CopyResource(ComputeShaders.ShaderResource{`0})"/> is called using that shared resources. In such cases, it is adviced to call <see cref="M:ComputeShaders.CSDevice.Synchronize"/> afterwards.</br>
+            </summary>
+            <param name="device">another device.</param>
+            <returns></returns>
+        </member>
+        <member name="M:ComputeShaders.CSTexture3D.Share(System.IntPtr)">
+            <summary>
+            Creates a resource that Gives its device (<paramref name="devicePointer"/>) access to a shared resource (this resource) created on a different device (this resource's device). In other words, it creates a resource with <paramref name="devicePointer"/> that is connected to this resource's device through this resource. There are important notes regarding shared resources:
+            <br>- If any of the two shared resources (the result resource and this resource) is updated, <see cref="M:ComputeShaders.CSDevice.Flush"/> must be called.</br>
+            <br>- In some cases, updating a shared resource and using <see cref="M:ComputeShaders.CSDevice.Flush"/> might causes problems if that shared resource was used with an asynchronous function. For example, when <see cref="M:ComputeShaders.CSDevice.Flush"/> is used then <see cref="M:ComputeShaders.ShaderResource`1.CopyResource(ComputeShaders.ShaderResource{`0})"/> is called using that shared resources. In such cases, it is adviced to call <see cref="M:ComputeShaders.CSDevice.Synchronize"/> afterwards.</br>
+            </summary>
+            <param name="devicePointer">another device.</param>
+            <returns></returns>
+        </member>
+        <member name="T:ComputeShaders.Diagnostics.GPUTimeMeasurer">
+            <summary>
+            A class to measure the execution time of commands done on the GPU (like Dispatch on compute shaders).
+            </summary>
+        </member>
+        <member name="M:ComputeShaders.Diagnostics.GPUTimeMeasurer.#ctor(System.IntPtr)">
+            <summary>
+            Creates a new measurment instance.
+            </summary>
+            <param name="deviceNativePointer">D3D11 device native pointer. It must be disposed of manually.</param>
+        </member>
+        <member name="M:ComputeShaders.Diagnostics.GPUTimeMeasurer.#ctor(ComputeShaders.CSDevice)">
+            <summary>
+            Creates a new measurment instance.
+            </summary>
+            <param name="device">ComputeShaders D3D11 device. It must be disposed of manually.</param>
+        </member>
+        <member name="M:ComputeShaders.Diagnostics.GPUTimeMeasurer.Measure(System.Action)">
+            <summary>
+            Measures the time it takes to execute <paramref name="gpuAction"/>. Note that if this is done in <see cref="T:ComputeShaders.Windows.WindowForm"/> it is prefered to do it once every frame or less.
+            </summary>
+            <param name="gpuAction">The action to be measured.</param>
+            <returns></returns>
+        </member>
+        <member name="M:ComputeShaders.Diagnostics.GPUTimeMeasurer.Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="T:ComputeShaders.Diagnostics.GPUTimeMeasurerData">
+            <summary>
+            A struct that contains measurement data from <see cref="T:ComputeShaders.Diagnostics.GPUTimeMeasurer"/>.
+            </summary>
+        </member>
+        <member name="F:ComputeShaders.Diagnostics.GPUTimeMeasurerData.Reliable">
+            <summary>
+            Whether this data is reliable. If not, that means the data aren't accurate and need to be remeasured again.
+            </summary>
+        </member>
+        <member name="F:ComputeShaders.Diagnostics.GPUTimeMeasurerData.Time">
+            <summary>
+            The time measured in microseconds (μs)
+            </summary>
+        </member>
+        <member name="T:ComputeShaders.ShaderResource`1">
+            <summary>
+            A base class for all shader Resources (exept constant buffer).
+            </summary>
+        </member>
+        <member name="P:ComputeShaders.ShaderResource`1.ResourceNativePointer">
+            <summary>
+            The native pointer to the sharpDX resource.
+            </summary>
+        </member>
+        <member name="P:ComputeShaders.ShaderResource`1.Device">
+            <summary>
+            The device connected to this resource.
+            </summary>
+        </member>
+        <member name="P:ComputeShaders.ShaderResource`1.CPU_ReadWrite">
+            <summary>
+            The ability to read/write the resource raw data by cpu. When true, it enables the cpu to read/write the resource raw data. However, enabling it increases memory usage to almost double.
+            </summary>
+        </member>
+        <member name="M:ComputeShaders.ShaderResource`1.AccessRawData(System.Action{ComputeShaders.TextureDataBox},ComputeShaders.CPUAccessMode)">
+            <summary>
+            Gives the cpu access to the raw data stored in the resource (by mapping https://learn.microsoft.com/en-us/windows/win32/api/d3d11/ns-d3d11-d3d11_mapped_subresource). During mapping:
+            <br>- GPU access to the resource is denied.</br>
+            <br>- The size of the first dimension of the resource (length in buffer, width in texture...) in bytes is rounded to the closest multiple of 16 that is larger than or equal to the original size. If you want to avoid this problem you can use UpdateSubresource()</br>
+            <br>Note that <see cref="P:ComputeShaders.ShaderResource`1.CPU_ReadWrite"/> must be true, and that all the accessing can only be done inside <paramref name="accessAction"/>..</br>
+            </summary>
+            <param name="accessAction">The action to access the data.</param>
+            <param name="mode">The mode of access.</param>
+        </member>
+        <member name="M:ComputeShaders.ShaderResource`1.CopyResource(ComputeShaders.ShaderResource{`0})">
+            <summary>
+            An asynchronous call that copies the entire contents of the source resource to the destination resource using the GPU. This call has a few restrictions, the source resource (this) and <paramref name="destination"/>:
+            <br>- Must be different resources.</br>
+            <br>- Must share the same <see cref="P:ComputeShaders.ShaderResource`1.Device"/>.</br>
+            <br>- Must be the same type.</br>
+            <br>- Must have identical dimensions (including width, height, depth, and size as appropriate).</br>
+            <br>- Must have compatible <see cref="T:ComputeShaders.TextureFormat"/> (if they were textures), which means the formats must be identical or at least from the same type group. For example, a <see cref="F:ComputeShaders.TextureFormat.R32G32B32_Float"/> texture can be copied to a <see cref="F:ComputeShaders.TextureFormat.R32G32B32_UInt"/> texture since both of these formats are in the  <see cref="F:ComputeShaders.TextureFormat.R32G32B32_Typeless"/> group. </br>
+            </summary>
+            <param name="destination"></param>
+        </member>
+        <member name="M:ComputeShaders.ShaderResource`1.EnableCPU_Raw_ReadWrite">
+            <summary>
+            Enables <see cref="P:ComputeShaders.ShaderResource`1.CPU_ReadWrite"/>.
+            </summary>
+        </member>
+        <member name="M:ComputeShaders.ShaderResource`1.CreateUAV">
+            <summary>
+            Creates an <see cref="T:SharpDX.Direct3D11.UnorderedAccessView"/> for the resource.
+            </summary>
+        </member>
+        <member name="M:ComputeShaders.ShaderResource`1.DisablesCPU_Raw_ReadWrite">
+            <summary>
+            Disables <see cref="P:ComputeShaders.ShaderResource`1.CPU_ReadWrite"/>.
+            </summary>
+        </member>
+        <member name="M:ComputeShaders.ShaderResource`1.Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="M:ComputeShaders.ShaderResource`1.SameNativeResource(ComputeShaders.ShaderResource{`0})">
+            <summary>
+            Returns whether this shaderResource and <paramref name="other"/> share the same native d3d11 resource.
+            </summary>
+            <param name="other"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ComputeShaders.TextureDataBox">
+            <summary>
+            A struct that provides an access to texture data pointers
+            </summary>
+        </member>
+        <member name="P:ComputeShaders.TextureDataBox.DataPointer">
+            <summary>
+            The data pointer. It is aligned (padded)
+            </summary>
+        </member>
+        <member name="P:ComputeShaders.TextureDataBox.RowPitch">
+            <summary>
+            Gets the number of bytes per row. Note that this might be aligned (padded).
+            </summary>
+        </member>
+        <member name="P:ComputeShaders.TextureDataBox.SlicePitch">
+            <summary>
+            Gets the number of bytes per slice (for a 3D texture, a slice is a 2D image).
+            </summary>
+        </member>
+        <member name="P:ComputeShaders.TextureDataBox.IsEmpty">
+            <summary>
+            Gets a value indicating whether this instance is empty.
+            </summary>
+            <value><c>true</c> if this instance is empty; otherwise, <c>false</c>.</value>
+        </member>
+        <member name="T:ComputeShaders.TextureFormat">
+            <summary>
+            The possible formats
+            </summary>
+        </member>
+        <member name="T:ComputeShaders.TextureFormatHelper">
+            <summary>
+            A helper class for TextureFormat
+            </summary>
+        </member>
+        <member name="M:ComputeShaders.TextureFormatHelper.ConvertFormatToBitmap(ComputeShaders.TextureFormat)">
+            <summary>
+            Converts a TextureFormat enum to its equivalent in PixelFormat. NOTE: if no equivalent is found it will return PixelFormat.Undefined
+            </summary>
+            <param name="format">The format</param>
+            <returns></returns>
+        </member>
+        <member name="M:ComputeShaders.TextureFormatHelper.ConvertBitmapToFormat(System.Drawing.Imaging.PixelFormat)">
+            <summary>
+            Converts a PixelFormat enum to its equivalent in TextureFormat. NOTE: if no equivalent is found it will return TextureFormat.Unknown
+            </summary>
+            <param name="pixelFormat">The format</param>
+            <returns></returns>
+        </member>
+        <member name="M:ComputeShaders.TextureFormatHelper.Size(ComputeShaders.TextureFormat)">
+            <summary>
+            Returns the size of <paramref name="format"/> in bytes.
+            </summary>
+            <param name="format"></param>
+            <returns></returns>
+        </member>
+        <member name="T:ComputeShaders.Utilities">
+            <summary>
+            A class to store random functions used in the library.
+            </summary>
+        </member>
+        <member name="M:ComputeShaders.Utilities.CopyMemoryExtern(System.IntPtr,System.IntPtr,System.UInt32)">
+            <summary>
+            Copies the data from the scr pointer to the dest pointer.
+            </summary>
+            <param name="dest">Destination pointer.</param>
+            <param name="src">Source pointer.</param>
+            <param name="count">Data length in bytes.</param>
+        </member>
+        <member name="M:ComputeShaders.Utilities.CopyMemory(System.IntPtr,System.IntPtr,System.UInt32)">
+            <summary>
+            Copies the data from the scr pointer to the dest pointer.
+            </summary>
+            <param name="dest">Destination pointer.</param>
+            <param name="src">Source pointer.</param>
+            <param name="count">Data length in bytes.</param>
+        </member>
+        <member name="M:ComputeShaders.Utilities.AccessRawData(System.Drawing.Bitmap,System.Action{System.Drawing.Imaging.BitmapData},System.Drawing.Imaging.ImageLockMode)">
+            <summary>
+            Access the bitmap raw data (using <see cref="M:System.Drawing.Bitmap.LockBits(System.Drawing.Rectangle,System.Drawing.Imaging.ImageLockMode,System.Drawing.Imaging.PixelFormat)"/>).
+            </summary>
+            <param name="bitmap"></param>
+            <param name="accessAction">The action of accessing. The raw data can only be accessed inside this action.</param>
+            <param name="accessMode">The mode for accessing.</param>
+        </member>
+        <member name="M:ComputeShaders.Utilities.GetIntPtr(System.Object,System.Runtime.InteropServices.GCHandle@)">
+            <summary>
+            Return the address of the object
+            </summary>
+            <param name="obj">The object</param>
+            <param name="handle">The handle that should be disposed (handle.Free()) after finishing using the address</param>
+            <returns></returns>
+        </member>
+        <member name="M:ComputeShaders.Utilities.GetFlippedBitmap(System.String)">
+            <summary>
+            Get the data of a image in the path but upsidedown and the red and blue channels are swapped.
+            </summary>
+            <param name="imagePath">The path to the image.</param>
+            <returns></returns>
+        </member>
+        <member name="M:ComputeShaders.Utilities.GetPrivateVariableDataCasted``2(System.String,``0)">
+            <summary>
+            Gets the private variable from and object Casted
+            </summary>
+            <typeparam name="T">Object type that contains the private variable</typeparam>
+            <typeparam name="D">The type of the private variable</typeparam>
+            <param name="variableName">The name of the private variable</param>
+            <param name="obj">The object that contains the private variable</param>
+            <returns></returns>
+        </member>
+        <member name="M:ComputeShaders.Utilities.GetPrivateVariableDataUncasted``2(System.String,``0)">
+            <summary>
+            Gets the private variable from and object Uncasted
+            </summary>
+            <typeparam name="T">Object type that contains the private variable</typeparam>
+            <typeparam name="D">The type of the private variable</typeparam>
+            <param name="variableName">The name of the private variable</param>
+            <param name="obj">The object that contains the private variable</param>
+            <returns></returns>
+        </member>
+        <member name="M:ComputeShaders.Utilities.GetObjectFromIntPtr``1(System.IntPtr)">
+            <summary>
+            returns the object from <paramref name="intPtr"/>.
+            </summary>
+            <typeparam name="T">The object type</typeparam>
+            <param name="intPtr">the pointer to the object data in memory</param>
+            <returns></returns>
+        </member>
+        <member name="T:ComputeShaders.Windows.Input">
+            <summary>
+            The class used to detect user input (mouse or keyboard).
+            </summary>
+        </member>
+        <member name="P:ComputeShaders.Windows.Input.MouseDeltaXPosition">
+            <summary>
+            The change in the cursor position in the x-axis.
+            </summary>
+        </member>
+        <member name="P:ComputeShaders.Windows.Input.MouseDeltaYPosition">
+            <summary>
+            The change in the cursor position in the y-axis.
+            </summary>
+        </member>
+        <member name="M:ComputeShaders.Windows.Input.#ctor">
+            <summary>
+            Create a new Input instance. Note that in order for the instance to register any user data, <see cref="M:ComputeShaders.Windows.Input.Update"/> must be called every frame.
+            </summary>
+        </member>
+        <member name="M:ComputeShaders.Windows.Input.Update">
+            <summary>
+            Updates the data about user input. This method should be called at the beginning of every frame.
+            </summary>
+        </member>
+        <member name="M:ComputeShaders.Windows.Input.GetMouseButtonDown(ComputeShaders.Windows.MouseButton)">
+            <summary>
+            Returns if the mouse button have been pressed this frame.
+            </summary>
+            <param name="button"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ComputeShaders.Windows.Input.GetMouseButton(ComputeShaders.Windows.MouseButton)">
+            <summary>
+            Returns if the mouse button is pressed.
+            </summary>
+            <param name="button"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ComputeShaders.Windows.Input.GetMouseButtonUp(ComputeShaders.Windows.MouseButton)">
+            <summary>
+            Returns if the mouse button have been released this frame.
+            </summary>
+            <param name="button"></param>
+            <returns></returns>
+        </member>
+        <member name="M:ComputeShaders.Windows.Input.GetKeyBoardButtonDown(SharpDX.DirectInput.Key)">
+            <summary>
+            Returns if a key have been pressed this frame.
+            </summary>
+            <param name="key">The keyboard key.</param>
+            <returns></returns>
+        </member>
+        <member name="M:ComputeShaders.Windows.Input.GetKeyBoardButton(SharpDX.DirectInput.Key)">
+            <summary>
+            Returns if a key is pressed.
+            </summary>
+            <param name="key">The keyboard key.</param>
+            <returns></returns>
+        </member>
+        <member name="M:ComputeShaders.Windows.Input.GetKeyBoardButtonUp(SharpDX.DirectInput.Key)">
+            <summary>
+            Returns if a key have been released this frame.
+            </summary>
+            <param name="key">The keyboard key.</param>
+            <returns></returns>
+        </member>
+        <member name="M:ComputeShaders.Windows.Input.Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="T:ComputeShaders.Windows.MouseButton">
+            <summary>
+            An enum that contains mouse buttons for <see cref="T:ComputeShaders.Windows.Input"/>.
+            </summary>
+        </member>
+        <member name="F:ComputeShaders.Windows.MouseButton.Left">
+            <summary>
+            The mouse left click.
+            </summary>
+        </member>
+        <member name="F:ComputeShaders.Windows.MouseButton.Right">
+            <summary>
+            The mouse right click.
+            </summary>
+        </member>
+        <member name="T:ComputeShaders.Windows.WindowForm">
+            <summary>
+            A basic class to create a window. It wraps and simplifies the usage of both <see cref="T:SharpDX.Windows.RenderForm"/> and <see cref="T:SharpDX.DXGI.SwapChain"/>.
+            </summary>
+        </member>
+        <member name="P:ComputeShaders.Windows.WindowForm.Width">
+            <summary>
+            The width of the window form.
+            </summary>
+        </member>
+        <member name="P:ComputeShaders.Windows.WindowForm.Height">
+            <summary>
+            The Height of the window form.
+            </summary>
+        </member>
+        <member name="P:ComputeShaders.Windows.WindowForm.Format">
+            <summary>
+            The format of the pixels in the window form.
+            </summary>
+        </member>
+        <member name="P:ComputeShaders.Windows.WindowForm.Title">
+            <summary>
+            The title of the window form.
+            </summary>
+        </member>
+        <member name="P:ComputeShaders.Windows.WindowForm.Device">
+            <summary>
+            The device the window form uses.
+            </summary>
+        </member>
+        <member name="P:ComputeShaders.Windows.WindowForm.WindowRenderForm">
+            <summary>
+            SharpDX RenderForm. This is used for more control over the window form.
+            </summary>
+        </member>
+        <member name="P:ComputeShaders.Windows.WindowForm.Output">
+            <summary>
+            The output texture used to draw on the window form. Also, it is the texture that will be passed as input in the 'updateAction' method when calling <see cref="M:ComputeShaders.Windows.WindowForm.Run(System.Action{ComputeShaders.CSTexture2D})"/>
+            </summary>
+        </member>
+        <member name="M:ComputeShaders.Windows.WindowForm.#ctor(System.Int32,System.Int32,ComputeShaders.TextureFormat,System.String,System.Int32)">
+            <summary>
+            Creates a new window form. Note that the window will not run until <see cref="M:ComputeShaders.Windows.WindowForm.Run(System.Action{ComputeShaders.CSTexture2D})"/> is called.
+            </summary>
+            <param name="width">The width of the window form.</param>
+            <param name="height">The Height of the window form.</param>
+            <param name="format">The format of the pixels in the window form.</param>
+            <param name="title">The title of the window form.</param>
+            <param name="gpuAdapterIndex">The GPU device to be used for the window form.</param>
+        </member>
+        <member name="M:ComputeShaders.Windows.WindowForm.Run(System.Action{ComputeShaders.CSTexture2D})">
+            <summary>
+            Runs the window form. Note that once this function is called, the cpu will not continue past the function until the window is closed (though <paramref name="updateAction"/> will still be called evey frame).
+            </summary>
+            <param name="updateAction">The drawing action to update the window form evey frame.</param>
+        </member>
+        <member name="M:ComputeShaders.Windows.WindowForm.Dispose">
+            <inheritdoc/>
+        </member>
+    </members>
+</doc>

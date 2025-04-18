@@ -1,0 +1,2552 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>Neuran</name>
+    </assembly>
+    <members>
+        <member name="P:Neuran.Activations.Exponential.ElementWise">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Activations.Exponential.Activate(Neuran.Tensor,Neuran.Tensor)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Activations.Exponential.ActivateElementWise(System.Single)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Activations.Exponential.GetDerivative(Neuran.Tensor,Neuran.Tensor,Neuran.Tensor)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Activations.Exponential.GetDerivativeElementWise(System.Single,System.Single)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Neuran.Activations.IActivation">
+            <summary>
+            The interface for all activation functions. 
+            </summary>
+        </member>
+        <member name="P:Neuran.Activations.IActivation.ElementWise">
+            <summary>
+            Determines whether the function operation is elementwise or not. If true, <see cref="M:Neuran.Activations.IActivation.ActivateElementWise(System.Single)"/> and <see cref="M:Neuran.Activations.IActivation.GetDerivativeElementWise(System.Single,System.Single)"/> can be called.
+            </summary>
+        </member>
+        <member name="M:Neuran.Activations.IActivation.ActivateElementWise(System.Single)">
+            <summary>
+            
+            </summary>
+            <param name="input">Input.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Neuran.Activations.IActivation.Activate(Neuran.Tensor,Neuran.Tensor)">
+            <summary>
+            Takes <paramref name="beforeActivation"/> and activate it, and store the results in <paramref name="afterActivation"/>.
+            </summary>
+            <param name="beforeActivation">Input.</param>
+            <param name="afterActivation">Output.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Neuran.Activations.IActivation.GetDerivativeElementWise(System.Single,System.Single)">
+            <summary>
+            Using whether <paramref name="input"/> or <paramref name="output"/> (whatever the implementation is) to calculate the derivative of the function with respect to its inputs.
+            </summary>
+            <param name="input"></param>
+            <param name="output"></param>
+        </member>
+        <member name="M:Neuran.Activations.IActivation.GetDerivative(Neuran.Tensor,Neuran.Tensor,Neuran.Tensor)">
+            <summary>
+            Using whether <paramref name="beforeActivation"/> or <paramref name="afterActivation"/> (whatever the implementation is) to calculate the derivative of the function with respect to its inputs, and multiply (elementwise multiplication) the results with the <paramref name="derivatives"/>.
+            </summary>
+            <param name="beforeActivation">The values before activation.</param>
+            <param name="afterActivation">The values after activation</param>
+            <param name="derivatives">The derivative chain.</param>
+        </member>
+        <member name="T:Neuran.Activations.Softmax">
+            <summary>
+            The activation function sigmoid.
+            </summary>
+        </member>
+        <member name="P:Neuran.Activations.Softmax.ElementWise">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Activations.Softmax.#ctor(System.Int32[],ComputeShaders.CSDevice)">
+            <summary>
+            Creates a new instance
+            </summary>
+            <param name="device"></param>
+            <param name="dimensions">The dimensions</param>
+        </member>
+        <member name="M:Neuran.Activations.Softmax.Activate(Neuran.Tensor,Neuran.Tensor)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Activations.Softmax.ActivateElementWise(System.Single)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Activations.Softmax.GetDerivative(Neuran.Tensor,Neuran.Tensor,Neuran.Tensor)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Activations.Softmax.GetDerivativeElementWise(System.Single,System.Single)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Neuran.Activations.LeakyReLU">
+            <summary>
+            The activation function sigmoid.
+            </summary>
+        </member>
+        <member name="P:Neuran.Activations.LeakyReLU.ElementWise">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Activations.LeakyReLU.#ctor(ComputeShaders.CSDevice)">
+            <summary>
+            Creates a new instance
+            </summary>
+            <param name="device"></param>
+        </member>
+        <member name="M:Neuran.Activations.LeakyReLU.Activate(Neuran.Tensor,Neuran.Tensor)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Activations.LeakyReLU.ActivateElementWise(System.Single)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Activations.LeakyReLU.GetDerivative(Neuran.Tensor,Neuran.Tensor,Neuran.Tensor)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Activations.LeakyReLU.GetDerivativeElementWise(System.Single,System.Single)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Neuran.Activations.ReLU">
+            <summary>
+            The activation function sigmoid.
+            </summary>
+        </member>
+        <member name="P:Neuran.Activations.ReLU.ElementWise">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Activations.ReLU.#ctor(ComputeShaders.CSDevice)">
+            <summary>
+            Creates a new instance
+            </summary>
+            <param name="device"></param>
+        </member>
+        <member name="M:Neuran.Activations.ReLU.Activate(Neuran.Tensor,Neuran.Tensor)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Activations.ReLU.ActivateElementWise(System.Single)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Activations.ReLU.GetDerivative(Neuran.Tensor,Neuran.Tensor,Neuran.Tensor)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Activations.ReLU.GetDerivativeElementWise(System.Single,System.Single)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Neuran.Activations.Tanh">
+            <summary>
+            The activation function sigmoid.
+            </summary>
+        </member>
+        <member name="P:Neuran.Activations.Tanh.ElementWise">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Activations.Tanh.#ctor(ComputeShaders.CSDevice)">
+            <summary>
+            Creates a new instance
+            </summary>
+            <param name="device"></param>
+        </member>
+        <member name="M:Neuran.Activations.Tanh.Activate(Neuran.Tensor,Neuran.Tensor)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Activations.Tanh.ActivateElementWise(System.Single)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Activations.Tanh.GetDerivative(Neuran.Tensor,Neuran.Tensor,Neuran.Tensor)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Activations.Tanh.GetDerivativeElementWise(System.Single,System.Single)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Neuran.Activations.Sigmoid">
+            <summary>
+            The activation function sigmoid.
+            </summary>
+        </member>
+        <member name="P:Neuran.Activations.Sigmoid.ElementWise">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Activations.Sigmoid.#ctor(ComputeShaders.CSDevice)">
+            <summary>
+            Creates a new instance
+            </summary>
+            <param name="device"></param>
+        </member>
+        <member name="M:Neuran.Activations.Sigmoid.Activate(Neuran.Tensor,Neuran.Tensor)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Activations.Sigmoid.ActivateElementWise(System.Single)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Activations.Sigmoid.GetDerivative(Neuran.Tensor,Neuran.Tensor,Neuran.Tensor)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Activations.Sigmoid.GetDerivativeElementWise(System.Single,System.Single)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Neuran.ArrayDataIterator">
+            <summary>
+            A IDataIterator that stores the data in an array.
+            </summary>
+        </member>
+        <member name="P:Neuran.ArrayDataIterator.Length">
+            <inheritdoc/>
+        </member>
+        <member name="P:Neuran.ArrayDataIterator.SequenceLength">
+            <inheritdoc/>
+        </member>
+        <member name="P:Neuran.ArrayDataIterator.LoopSequence">
+            <inheritdoc/>
+        </member>
+        <member name="P:Neuran.ArrayDataIterator.DataType">
+            <inheritdoc/>
+        </member>
+        <member name="P:Neuran.ArrayDataIterator.OutputLength">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.ArrayDataIterator.#ctor(Neuran.SequenceType)">
+            <summary>
+            Creates a new empty instance.
+            </summary>
+        </member>
+        <member name="M:Neuran.ArrayDataIterator.AddData(Neuran.Tensor[],Neuran.Tensor[],System.Boolean)">
+            <summary>
+            Add new data element.
+            </summary>
+            <param name="input">The input data. This can be null depending on <see cref="T:Neuran.SequenceType"/>.</param>
+            <param name="output">The output data. This can be null depending on <see cref="T:Neuran.SequenceType"/>.</param>
+            <param name="newSequence">Whether to add the data to a new sequence or to the last added sequence previously. For models that do not use sequence data, this should be true.</param>
+        </member>
+        <member name="M:Neuran.ArrayDataIterator.GetNext">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.ArrayDataIterator.Shuffle(System.Random)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.ArrayDataIterator.ResetSequence">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.ArrayDataIterator.ResetData">
+            <inheritdoc/>
+        </member>
+        <member name="T:Neuran.DSSDataIterator">
+            <summary>
+            An IDataIterator class that reads data from an DSS file.
+            Note: the length of the input and output arrays output at GetNext() are 1.
+            </summary>
+        </member>
+        <member name="P:Neuran.DSSDataIterator.Length">
+            <inheritdoc/>
+        </member>
+        <member name="P:Neuran.DSSDataIterator.SequenceLength">
+            <inheritdoc/>
+        </member>
+        <member name="P:Neuran.DSSDataIterator.LoopSequence">
+            <inheritdoc/>
+        </member>
+        <member name="P:Neuran.DSSDataIterator.DataType">
+            <inheritdoc/>
+        </member>
+        <member name="P:Neuran.DSSDataIterator.OutputLength">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.DSSDataIterator.#ctor(System.String,System.String,Neuran.SequenceType,ComputeShaders.CSDevice,ComputeShaders.CSDevice)">
+            <summary>
+            
+            </summary>
+            <param name="inputPath"></param>
+            <param name="outputPath"></param>
+            <param name="device"></param>
+        </member>
+        <member name="M:Neuran.DSSDataIterator.GetNext">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.DSSDataIterator.Shuffle(System.Random)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.DSSDataIterator.ResetSequence">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.DSSDataIterator.ResetData">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.DSSDataIterator.Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="F:Neuran.DSS.DSSDataTypes.UnsignedByte">
+            <summary>
+            A single byte that ranges from 0 to 255
+            </summary>
+        </member>
+        <member name="F:Neuran.DSS.DSSDataTypes.SignedByte">
+            <summary>
+            A single byte that ranges from -127 to 127
+            </summary>
+        </member>
+        <member name="F:Neuran.DSS.DSSDataTypes.Short">
+            <summary>
+            Short (2 bytes)
+            </summary>
+        </member>
+        <member name="F:Neuran.DSS.DSSDataTypes.Int">
+            <summary>
+            Integer (4 bytes)
+            </summary>
+        </member>
+        <member name="F:Neuran.DSS.DSSDataTypes.Float">
+            <summary>
+            Float (4 bytes)
+            </summary>
+        </member>
+        <member name="F:Neuran.DSS.DSSDataTypes.Double">
+            <summary>
+            Double (8 bytes)
+            </summary>
+        </member>
+        <member name="M:Neuran.DSS.DSSExtensions.Size(Neuran.DSS.DSSDataTypes)">
+            <summary>
+            The size of this data type.
+            </summary>
+            <param name="t"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Neuran.DSS.DSSExtensions.DSSMagicByte(Neuran.DSS.DSSDataTypes)">
+            <summary>
+            Converts the data type to the byte that represent it in idx file.
+            </summary>
+            <param name="dataType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Neuran.DSS.DSSExtensions.GetDSSTypeFromMagicByte(System.Byte)">
+            <summary>
+            Converts the data byte (the third byte in the magic number in idx file) to the data type it represent.
+            </summary>
+            <param name="magicNumByte3">the third byte in the magic number in idx file.</param>
+            <returns></returns>
+        </member>
+        <member name="P:Neuran.DSS.DSSReader.DataType">
+            <summary>
+            The type of the data stored.
+            </summary>
+        </member>
+        <member name="P:Neuran.DSS.DSSReader.Dimensions">
+            <summary>
+            The size of each dimension. The last dimension in the array is the fastest (fastest to change when iterating the whole data), for example
+            if there were 3 dimensions (array of images) they will be sorted as: 0-numberOfImages 1-Heights 2-Widths (if row major), see https://agilescientific.com/blog/2018/12/28/what-is-the-fastest-axis-of-an-array for explanation.
+            </summary>
+        </member>
+        <member name="P:Neuran.DSS.DSSReader.ElementSize">
+            <summary>
+            The size of each element in each sequence in bytes.
+            </summary>
+        </member>
+        <member name="P:Neuran.DSS.DSSReader.NumberOfSequences">
+            <summary>
+            The number of sequences stored in the file.
+            </summary>
+        </member>
+        <member name="P:Neuran.DSS.DSSReader.SequenceLength">
+            <summary>
+            The length of the current sequence (in elements).
+            </summary>
+        </member>
+        <member name="P:Neuran.DSS.DSSReader.ElementIndex">
+            <summary>
+            The index of the currect element (the element that yet to be read) in the sequence.
+            </summary>
+        </member>
+        <member name="P:Neuran.DSS.DSSReader.OnSequenceEnd">
+            <summary>
+            This is called after reaching the end of a sequence when calling <see cref="M:Neuran.DSS.DSSReader.NextElement"/>
+            </summary>
+        </member>
+        <member name="M:Neuran.DSS.DSSReader.#ctor(System.String,System.Boolean)">
+            <summary>
+            Creates a new .dss file reader
+            </summary>
+            <param name="dssPath">The path to the .dss file.</param>
+            <param name="gotoSequence">Whether the ability to jump to a certain sequence is possible. If true then <see cref="M:Neuran.DSS.DSSReader.GoToSequence(System.Int32)"/> can be called.</param>
+        </member>
+        <member name="M:Neuran.DSS.DSSReader.NextElement">
+            <summary>
+            Returns the bytes of the next element in the sequence. If it reached the end of the sequence, it will move to the next sequence.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Neuran.DSS.DSSReader.GoToSequence(System.Int32)">
+            <summary>
+            Moves the reader seek to the wanted sequence.
+            </summary>
+            <param name="sequenceIndex"></param>
+        </member>
+        <member name="M:Neuran.DSS.DSSReader.Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="T:Neuran.DSS.DSSWriter">
+            <summary>
+            DSS (Dynamic Sequence Structure) is used for storing sequence data.
+            </summary>
+        </member>
+        <member name="P:Neuran.DSS.DSSWriter.DataType">
+            <summary>
+            The type of the data stored.
+            </summary>
+        </member>
+        <member name="P:Neuran.DSS.DSSWriter.DimensionsSize">
+            <summary>
+            The size of each dimension. The last dimension in the array is the fastest (fastest to change when iterating the whole data), for example
+            if there were 3 dimensions (array of images) they will be sorted as: 0-numberOfImages 1-Heights 2-Widths (if row major), see https://agilescientific.com/blog/2018/12/28/what-is-the-fastest-axis-of-an-array for explanation.
+            </summary>
+        </member>
+        <member name="P:Neuran.DSS.DSSWriter.NumberOfSequences">
+            <summary>
+            The number of sequences.
+            </summary>
+        </member>
+        <member name="M:Neuran.DSS.DSSWriter.#ctor(System.String,Neuran.DSS.DSSDataTypes,System.Int32,System.Int32[])">
+            <summary>
+            Creates a new dss file and writes in dss information.
+            </summary>
+            <param name="path">The path to save the new dss file in it.</param>
+            <param name="dataType">The type of data Stored.</param>
+            <param name="sequencesNum">The number of sequences to store.</param>
+            <param name="dimensionsSize">The size of each dimension. The length of the array represents the number of dimensions.</param>
+        </member>
+        <member name="M:Neuran.DSS.DSSWriter.AppendWrite(System.Byte[],System.Int32,System.Int32,System.Boolean)">
+            <summary>
+            Writes to the dss file without overwriting what is written already (adds to what was written before) the bytes from <paramref name="bytes"/>.
+            </summary>
+            <param name="bytes">The bytes array.</param>
+            <param name="offset">the offset in <paramref name="bytes"/> to starts writing from. So if it's 1 i will copy the bytes starting from the byte 
+            with index 1 in the bytes array to the dss file, so the first byte in the byte array is skipped.</param>
+            <param name="count">The number of bytes to copy from <paramref name="bytes"/>.</param>
+            <param name="newSequence">Whether to add this data to a new sequence.</param>
+        </member>
+        <member name="M:Neuran.DSS.DSSWriter.ChangeDimensionSize(System.Int32,System.Int32)">
+            <summary>
+            Changes the size of the dimension with the index <paramref name="dimensionIndex"/> in <see cref="P:Neuran.DSS.DSSWriter.DimensionsSize"/>.
+            </summary>
+            <param name="dimensionIndex">The index of the dimension.</param>
+            <param name="newSize">The new Size of the dimension</param>
+        </member>
+        <member name="M:Neuran.DSS.DSSWriter.ChangesSequencesNum(System.Int32)">
+            <summary>
+            Changes the number of sequences to be stored.
+            </summary>
+            <param name="sequenceNum">The new length.</param>
+        </member>
+        <member name="M:Neuran.DSS.DSSWriter.Close">
+            <summary>
+            Closes the current writer and the underlying stream.
+            </summary>
+        </member>
+        <member name="M:Neuran.DSS.DSSWriter.Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.GPUTensorProcesserApplier`1.Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="T:Neuran.GradientDescent.GradientClipper">
+            <summary>
+            A class for gradient clipping (to avoid exploding/vanishing gradients)
+            </summary>
+        </member>
+        <member name="M:Neuran.GradientDescent.GradientClipper.#ctor(System.Collections.Generic.List{Neuran.Tensor},Neuran.GradientDescent.GradientClippingInfo)">
+            <summary>
+            Creates a new instance.
+            </summary>
+            <param name="parameters"></param>
+            <param name="info"></param>
+        </member>
+        <member name="M:Neuran.GradientDescent.GradientClipper.Clip">
+            <summary>
+            Clips the gradients of the current parameters
+            </summary>
+        </member>
+        <member name="T:Neuran.GradientDescent.GradientClippingInfo">
+            <summary>
+            Info for gradient clipping during training.
+            </summary>
+        </member>
+        <member name="P:Neuran.GradientDescent.GradientClippingInfo.Max">
+            <summary>
+            The maximum gradient allowed (as norm not value)
+            </summary>
+        </member>
+        <member name="P:Neuran.GradientDescent.GradientClippingInfo.Min">
+            <summary>
+            The minimum gradient allowed (as norm not value)
+            </summary>
+        </member>
+        <member name="P:Neuran.GradientDescent.GradientDescentTrainer.Clipping">
+            <summary>
+            Info for applying gradient clipping.
+            </summary>
+        </member>
+        <member name="P:Neuran.GradientDescent.GradientDescentTrainer.beforeGradients">
+            <summary>
+            This is run before the algorithm applies the gradients to the model parameters. Usually, this is used for debugging. (int, int ) -> (current epoch, current sequence)
+            </summary>
+        </member>
+        <member name="P:Neuran.GradientDescent.GradientDescentTrainer.FinishedEpochs">
+            <summary>
+            The number of epochs finished
+            </summary>
+        </member>
+        <member name="P:Neuran.GradientDescent.GradientDescentTrainer.FinishedSequences">
+            <summary>
+            The number of sequences finished. This counter resets every epoch.
+            </summary>
+        </member>
+        <member name="M:Neuran.GradientDescent.GradientDescentTrainer.Train(Neuran.GradientDescent.IGradientDescent,Neuran.Loss.ILoss[],Neuran.Optimizers.IOptimizer,Neuran.IDataIterator,System.Int32,System.Boolean,System.Int32,System.Int32,System.Random,System.Action{System.Int32,System.Int32},System.Nullable{Neuran.GradientDescent.GradientClippingInfo})">
+            <summary>
+            Trains the model using gradient descent.
+            </summary>
+            <param name="model">The model to train.</param>
+            <param name="lossFunction"></param>
+            <param name="optimizer"></param>
+            <param name="trainingData"></param>
+            <param name="epochs"></param>
+            <param name="shuffle"></param>
+            <param name="maxTruncatedLength"></param>
+            <param name="batchSize"></param>
+            <param name="random"></param>
+            <param name="clipInfo"></param>
+            <param name="forEverySequnce">A log action that runs after every sequence. (int, int) -> (epoch, sequenceIndex)</param>
+        </member>
+        <member name="P:Neuran.GradientDescent.GradientEstimator.StepSize">
+            <summary>
+            The amount of change applied to every learnable parameter to estimate the gradients.
+            </summary>
+        </member>
+        <member name="P:Neuran.GradientDescent.GradientEstimator.LossFunctions">
+            <summary>
+            The loss function used.
+            </summary>
+        </member>
+        <member name="P:Neuran.GradientDescent.GradientEstimator.DataIterator">
+            <summary>
+            The iterator used to get the sequence of input/output data.
+            </summary>
+        </member>
+        <member name="M:Neuran.GradientDescent.GradientEstimator.Estimate(Neuran.GradientDescent.IGradientDescent)">
+            <summary>
+            Estimates the gradients in <paramref name="model"/> with the data from <see cref="P:Neuran.GradientDescent.GradientEstimator.DataIterator"/>.
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="model"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Neuran.GradientDescent.GradientEstimator.EstimateAndCalculate(Neuran.GradientDescent.IGradientDescent,System.Collections.Generic.List{Neuran.Tensor}@,System.Collections.Generic.List{Neuran.Tensor}@)">
+            <summary>
+            Estimates the gradients for a model and calculate its gradients to be compared.
+            </summary>
+            <param name="model"></param>
+            <param name="estimated"></param>
+            <param name="calculated"></param>
+        </member>
+        <member name="T:Neuran.GradientDescent.IGradientDescent">
+            <summary>
+            The inerface that allows models to learn using Gradient Descent algorithm.
+            </summary>
+        </member>
+        <member name="P:Neuran.GradientDescent.IGradientDescent.PreLayerDer">
+            <summary>
+            Stores the derivative of the loss w.r.t the input of this model.
+            </summary>
+        </member>
+        <member name="P:Neuran.GradientDescent.IGradientDescent.ConnectedFrom">
+            <summary>
+            The model connected to this model.
+            </summary>
+        </member>
+        <member name="M:Neuran.GradientDescent.IGradientDescent.PrepareGD(System.Int32)">
+            <summary>
+            This is called at the start of the training. The model can initiate anything necessary to the training.
+            </summary>
+            <param name="maxTruncatedLength">The maximum length to backpropagate through the sequence.</param>
+        </member>
+        <member name="M:Neuran.GradientDescent.IGradientDescent.EndGD">
+            <summary>
+            This is called at the end of the training process. The model can delete any unnecessary data from the training.
+            </summary>
+        </member>
+        <member name="M:Neuran.GradientDescent.IGradientDescent.AddParameters(System.Collections.Generic.List{Neuran.Tensor})">
+            <summary>
+            Returns all the learnable parameters and their derivatives in the network. There are two important notes:
+            <br>1- The Tensors in the list must be a reference to the actual learnable parameters and not just a value copy.</br>
+            <br>2- The order of which the tensors where added most be the same for boo.</br>
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Neuran.GradientDescent.IGradientDescent.Backpropagate(Neuran.Tensor[],System.Int32)">
+            <summary>
+            Calculates the gradients in the model in a specific past time (with recurrsion if needed).
+            <br>Note the calculated gradients should be added to previous gradients.</br>
+            </summary>
+            <param name="lossDer">The derivative of the loss with respect to the output of the model.</param>
+            <param name="pastTime">The time variable. 0 means the present (input, output, ...) and N means N-th previous.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Neuran.GradientDescent.IGradientDescent.Connect(Neuran.GradientDescent.IGradientDescent)">
+            <summary>
+            Connects this with <paramref name="model"/> such that the output of <paramref name="model"/> is the input of this.
+            </summary>
+            <param name="model"></param>
+        </member>
+        <member name="M:Neuran.GradientDescent.IGradientDescent.ResetGradients">
+            <summary>
+            
+            </summary>
+        </member>
+        <member name="T:Neuran.IDataIterator">
+            <summary>
+            The interface for structures that store data to train/test models.
+            </summary>
+        </member>
+        <member name="P:Neuran.IDataIterator.LoopSequence">
+            <summary>
+            Whether to loop through a sequence when reached the end of the sequence.
+            </summary>
+        </member>
+        <member name="P:Neuran.IDataIterator.Length">
+            <summary>
+            The total number of sequence samples.
+            </summary>
+        </member>
+        <member name="P:Neuran.IDataIterator.SequenceLength">
+            <summary>
+            The length of the current sequence. This is used for RNNs or other similar models. For all other models where data order is not important, this should be set to 1.
+            </summary>
+        </member>
+        <member name="P:Neuran.IDataIterator.OutputLength">
+            <summary>
+            The number of outputs in the current sequence. This is used for RNNs or other similar models. For all other models where data order is not important, this should be set to 1.
+            </summary>
+        </member>
+        <member name="P:Neuran.IDataIterator.DataType">
+            <summary>
+            The type of all sequences stored.
+            </summary>
+        </member>
+        <member name="M:Neuran.IDataIterator.GetNext">
+            <summary>
+            Returns the next data sample. Depending on <see cref="T:Neuran.SequenceType"/> either tensors could be null.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:Neuran.IDataIterator.Shuffle(System.Random)">
+            <summary>
+            Shuffles the data samples' order.
+            </summary>
+        </member>
+        <member name="M:Neuran.IDataIterator.ResetSequence">
+            <summary>
+            Resets the element counter to 0 to start reading from the beggining of the current sequence.
+            </summary>
+        </member>
+        <member name="M:Neuran.IDataIterator.ResetData">
+            <summary>
+            Resets the sequence and element counter to 0 to start reading from the first sequence
+            </summary>
+        </member>
+        <member name="T:Neuran.IDXDataIterator">
+            <summary>
+            An IDataIterator class that reads data from an IDX file.
+            Note: the length of the input and output arrays output at GetNext() are 1.
+            </summary>
+        </member>
+        <member name="P:Neuran.IDXDataIterator.Length">
+            <inheritdoc/>
+        </member>
+        <member name="P:Neuran.IDXDataIterator.SequenceLength">
+            <inheritdoc/>
+        </member>
+        <member name="P:Neuran.IDXDataIterator.LoopSequence">
+            <inheritdoc/>
+        </member>
+        <member name="P:Neuran.IDXDataIterator.DataType">
+            <inheritdoc/>
+        </member>
+        <member name="P:Neuran.IDXDataIterator.OutputLength">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.IDXDataIterator.#ctor(System.String,System.String,Neuran.SequenceType,ComputeShaders.CSDevice)">
+            <summary>
+            
+            </summary>
+            <param name="inputPath"></param>
+            <param name="outputPath"></param>
+            <param name="device"></param>
+        </member>
+        <member name="M:Neuran.IDXDataIterator.GetNext">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.IDXDataIterator.Shuffle(System.Random)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.IDXDataIterator.ResetSequence">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.IDXDataIterator.ResetData">
+            <inheritdoc/>
+        </member>
+        <member name="T:Neuran.IDX.CS.CSTexture2DIDXReader">
+            <summary>
+            A class to read idx data and convert it to <see cref="T:ComputeShaders.CSTexture2D"/>.
+            </summary>
+        </member>
+        <member name="P:Neuran.IDX.CS.CSTexture2DIDXReader.Textures">
+            <summary>
+            Number of textures stored in the idx file.
+            </summary>
+        </member>
+        <member name="P:Neuran.IDX.CS.CSTexture2DIDXReader.Height">
+            <summary>
+            The height of the textures stored in the idx file.
+            </summary>
+        </member>
+        <member name="P:Neuran.IDX.CS.CSTexture2DIDXReader.Width">
+            <summary>
+            The width of the textures stored in the idx file.
+            </summary>
+        </member>
+        <member name="P:Neuran.IDX.CS.CSTexture2DIDXReader.Channels">
+            <summary>
+            Number of channels (color channels) in each pixel in the textures stored in the idx file.
+            </summary>
+        </member>
+        <member name="P:Neuran.IDX.CS.CSTexture2DIDXReader.ChannelType">
+            <summary>
+            The type of each channel in the textures stored in the idx file.
+            </summary>
+        </member>
+        <member name="P:Neuran.IDX.CS.CSTexture2DIDXReader.Format">
+            <summary>
+            The format of the texture.
+            </summary>
+        </member>
+        <member name="M:Neuran.IDX.CS.CSTexture2DIDXReader.#ctor(System.String,ComputeShaders.TextureFormat,ComputeShaders.CSDevice)">
+            <summary>
+            
+            </summary>
+            <param name="path">The path to the idx file.</param>
+            <param name="format">The format of the texture.</param>
+            <param name="device">Device used to create the texture.</param>
+        </member>
+        <member name="M:Neuran.IDX.CS.CSTexture2DIDXReader.ReadTexture(System.Int32,Neuran.IDX.CS.TextureReadingMethod)">
+            <summary>
+            Reads a texture from the idx file.
+            </summary>
+            <param name="index">The index of the texture.</param>
+            <param name="readMethod">The method of reading The data from the idx file to the texture.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Neuran.IDX.CS.CSTexture2DIDXReader.Close">
+            <summary>
+            Closes the reader and its stream.
+            </summary>
+        </member>
+        <member name="M:Neuran.IDX.CS.CSTexture2DIDXReader.Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="T:Neuran.IDX.CS.SBufferIDXReader`1">
+            <summary>
+            A class to read idx data and convert it to <see cref="T:ComputeShaders.CSStructuredBuffer`1"/>.
+            </summary>
+        </member>
+        <member name="P:Neuran.IDX.CS.SBufferIDXReader`1.Buffers">
+            <summary>
+            Number of buffers stored in the idx file.
+            </summary>
+        </member>
+        <member name="P:Neuran.IDX.CS.SBufferIDXReader`1.BufferLength">
+            <summary>
+            The Length of each buffer stored in the idx file.
+            </summary>
+        </member>
+        <member name="M:Neuran.IDX.CS.SBufferIDXReader`1.#ctor(System.String,ComputeShaders.CSDevice)">
+            <summary>
+            
+            </summary>
+            <param name="path">The path to the idx file.</param>
+            <param name="device">Device used to create the buffer.</param>
+        </member>
+        <member name="M:Neuran.IDX.CS.SBufferIDXReader`1.ReadTexture(System.Int32,Neuran.IDX.BufferReadingMethod)">
+            <summary>
+            The a texture from the idx file.
+            </summary>
+            <param name="index">The index of the texture.</param>
+            <param name="readMethod">The method of reading The data from the idx file to the texture.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Neuran.IDX.CS.SBufferIDXReader`1.Close">
+            <summary>
+            Closes the current reader and the underlying stream.
+            </summary>
+        </member>
+        <member name="M:Neuran.IDX.CS.SBufferIDXReader`1.Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="T:Neuran.IDX.CS.TextureReadingMethod">
+            <summary>
+            An enum that contains the methods to read idx data (in IntPtr form) to <see cref="T:ComputeShaders.CSTexture2D"/> or <see cref="T:ComputeShaders.CSTexture2DArray"/>.
+            </summary>
+        </member>
+        <member name="F:Neuran.IDX.CS.TextureReadingMethod.CreateNewTexture">
+            <summary>
+            Disposes the texture and creates a new one using <see cref="M:ComputeShaders.CSDevice.CreateTexture2D(System.Int32,System.Int32,ComputeShaders.TextureFormat,System.IntPtr,System.Boolean)"/> or <see cref="M:ComputeShaders.CSDevice.CreateTexture2DArray(System.Int32,System.Int32,ComputeShaders.TextureFormat,System.Boolean,System.IntPtr[])"/> To read the idx data. This is recommended.
+            </summary>
+        </member>
+        <member name="F:Neuran.IDX.CS.TextureReadingMethod.WriteToRawData">
+            <summary>
+            Uses <see cref="!:ShaderResource&lt;T&gt;.WriteToRawData(Action&lt;TextureDataBox&gt;)"/> To read the idx data.
+            </summary>
+        </member>
+        <member name="F:Neuran.IDX.CS.TextureReadingMethod.UpdateSubresource">
+            <summary>
+            Uses <see cref="M:ComputeShaders.CSTexture2D.UpdateSubresource(System.IntPtr)"/> or <see cref="!:CSTexture2DArray.UpdateSubresource(IntPtr)"/> To read the idx data.
+            </summary>
+        </member>
+        <member name="T:Neuran.IDX.IDXDataTypes">
+            <summary>
+            The types of data to store in idx files.
+            </summary>
+        </member>
+        <member name="F:Neuran.IDX.IDXDataTypes.UnsignedByte">
+            <summary>
+            A single byte that ranges from 0 to 255
+            </summary>
+        </member>
+        <member name="F:Neuran.IDX.IDXDataTypes.SignedByte">
+            <summary>
+            A single byte that ranges from -127 to 127
+            </summary>
+        </member>
+        <member name="F:Neuran.IDX.IDXDataTypes.Short">
+            <summary>
+            Short (2 bytes)
+            </summary>
+        </member>
+        <member name="F:Neuran.IDX.IDXDataTypes.Int">
+            <summary>
+            Integer (4 bytes)
+            </summary>
+        </member>
+        <member name="F:Neuran.IDX.IDXDataTypes.Float">
+            <summary>
+            Float (4 bytes)
+            </summary>
+        </member>
+        <member name="F:Neuran.IDX.IDXDataTypes.Double">
+            <summary>
+            Double (8 bytes)
+            </summary>
+        </member>
+        <member name="T:Neuran.IDX.IDXExtensions">
+            <summary>
+            A class that holds the functions used for idx.
+            </summary>
+        </member>
+        <member name="M:Neuran.IDX.IDXExtensions.ReadIDXInt32(System.IO.BinaryReader)">
+            <summary>
+            Reads 4 bytes as an integer in idx file.
+            source: //https://stackoverflow.com/questions/49407772/reading-mnist-database
+            </summary>
+            <param name="rd"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Neuran.IDX.IDXExtensions.ReadIDXBytes(System.IO.BinaryReader,System.Int32)">
+            <summary>
+            Reads an array of bytes in idx file.
+            </summary>
+            <param name="rd"></param>
+            <param name="count">The number of bytes to read.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Neuran.IDX.IDXExtensions.Size(Neuran.IDX.IDXDataTypes)">
+            <summary>
+            The size of this data type.
+            </summary>
+            <param name="t"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Neuran.IDX.IDXExtensions.IDXByte(Neuran.IDX.IDXDataTypes)">
+            <summary>
+            Converts the data type to the byte that represent it in idx file.
+            </summary>
+            <param name="dataType"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Neuran.IDX.IDXExtensions.GetIDXTypeFromByte(System.Byte)">
+            <summary>
+            Converts the data byte (the third byte in the magic number in idx file) to the data type it represent.
+            </summary>
+            <param name="magicNumByte3">the third byte in the magic number in idx file.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Neuran.IDX.IDXReader">
+            <summary>
+            A class that reads idx files. For more information about idx files see http://yann.lecun.com/exdb/mnist/
+            </summary>
+        </member>
+        <member name="P:Neuran.IDX.IDXReader.DataType">
+            <summary>
+            The type of the data stored.
+            </summary>
+        </member>
+        <member name="P:Neuran.IDX.IDXReader.DimensionsNumber">
+            <summary>
+            The number of dimensions in the idx file
+            </summary>
+        </member>
+        <member name="P:Neuran.IDX.IDXReader.DimensionsSize">
+            <summary>
+            The size of each dimension. The last dimension in the array is the fastest (fastest to change when iterating the whole data), for example
+            if there were 3 dimensions (array of images) they will be sorted as: 0-numberOfImages 1-Heights 2-Widths (if row major), see https://agilescientific.com/blog/2018/12/28/what-is-the-fastest-axis-of-an-array for explanation.
+            </summary>
+        </member>
+        <member name="M:Neuran.IDX.IDXReader.#ctor(System.String)">
+            <summary>
+            Opens an idx file.
+            </summary>
+            <param name="idxPath">The path to the idx file.</param>
+        </member>
+        <member name="M:Neuran.IDX.IDXReader.#ctor(System.IO.Stream)">
+            <summary>
+            Opens an idx file.
+            </summary>
+            <param name="idxStream">The stream reading the idx file.</param>
+        </member>
+        <member name="M:Neuran.IDX.IDXReader.ReadRawData(System.Action{System.IntPtr},System.Int32,System.Int32)">
+            <summary>
+            Reads the raw data in the idx file.
+            Note: All the reading must be done inside <paramref name="readingAction"/>.
+            </summary>
+            <param name="readingAction">The actions that contains all the reading process. The IntPtr given is the pointer to the byte with the index <paramref name="start"/> in the idx file.</param>
+            <param name="start">The index to the byte in the data wanted to read in the idx file. The first bytes that defines the idx file arent included because they do not contain the data themselfs.</param>
+            <param name="count">The length of bytes wanted to read.</param>
+        </member>
+        <member name="M:Neuran.IDX.IDXReader.Close">
+            <summary>
+            Closes the current reader and the underlying stream.
+            </summary>
+        </member>
+        <member name="M:Neuran.IDX.IDXReader.Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="T:Neuran.IDX.IDXWriter">
+            <summary>
+            A class that creates idx files. For more information about idx files see http://yann.lecun.com/exdb/mnist/
+            </summary>
+        </member>
+        <member name="P:Neuran.IDX.IDXWriter.DataType">
+            <summary>
+            The type of the data stored.
+            </summary>
+        </member>
+        <member name="P:Neuran.IDX.IDXWriter.DimensionsNumber">
+            <summary>
+            The number of dimensions in the idx file
+            </summary>
+        </member>
+        <member name="P:Neuran.IDX.IDXWriter.DimensionsSize">
+            <summary>
+            The size of each dimension. The last dimension in the array is the fastest (fastest to change when iterating the whole data), for example
+            if there were 3 dimensions (array of images) they will be sorted as: 0-numberOfImages 1-Heights 2-Widths (if row major), see https://agilescientific.com/blog/2018/12/28/what-is-the-fastest-axis-of-an-array for explanation.
+            </summary>
+        </member>
+        <member name="M:Neuran.IDX.IDXWriter.#ctor(System.String,Neuran.IDX.IDXDataTypes,System.Int32[])">
+            <summary>
+            Creates a new idx file and writes in idx information.
+            </summary>
+            <param name="path">The path to save the new idx file in it.</param>
+            <param name="dataType">The type of data Stored.</param>
+            <param name="dimensionsSize">The size of each dimension. The length of the array represents the number of dimensions.</param>
+        </member>
+        <member name="M:Neuran.IDX.IDXWriter.AppendWrite(System.Byte[],System.Int32,System.Int32)">
+            <summary>
+            Writes to the idx file without overwriting what is written already (adds to what was written before) the bytes from <paramref name="bytes"/>.
+            </summary>
+            <param name="bytes">The bytes array.</param>
+            <param name="offset">the offset in <paramref name="bytes"/> to starts writing from. So if it's 1 i will copy the bytes starting from the byte 
+            with index 1 in the bytes array to the idx file, so the first byte in the byte array is skipped.</param>
+            <param name="count">The number of bytes to copy from <paramref name="bytes"/>.</param>
+        </member>
+        <member name="M:Neuran.IDX.IDXWriter.ChangeDimensionSize(System.Int32,System.Int32)">
+            <summary>
+            Changes the size of the dimension with the index <paramref name="dimensionIndex"/> in <see cref="P:Neuran.IDX.IDXWriter.DimensionsSize"/>.
+            </summary>
+            <param name="dimensionIndex">The index of the dimension.</param>
+            <param name="newSize">The new Size of the dimension</param>
+        </member>
+        <member name="M:Neuran.IDX.IDXWriter.Close">
+            <summary>
+            Closes the current writer and the underlying stream.
+            </summary>
+        </member>
+        <member name="M:Neuran.IDX.IDXWriter.Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="T:Neuran.IModel">
+            <summary>
+            The interface for all models.
+            </summary>
+        </member>
+        <member name="P:Neuran.IModel.Output">
+            <summary>
+            The model output tensor.
+            </summary>
+        </member>
+        <member name="P:Neuran.IModel.Input">
+            <summary>
+            The model input tensor.
+            </summary>
+        </member>
+        <member name="M:Neuran.IModel.Run(Neuran.Tensor[])">
+            <summary>
+            Runs the model with input.
+            </summary>
+            <param name="input">Model's input.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Neuran.IModel.Reset">
+            <summary>
+            Resets the model (for recursion).
+            </summary>
+        </member>
+        <member name="M:Neuran.IModel.SaveRandomState">
+            <summary>
+            Saves all the random states in the model to be loaded later.
+            </summary>
+        </member>
+        <member name="M:Neuran.IModel.LoadRandomState">
+            <summary>
+            Loads the latest random state stored previously (the last time <see cref="M:Neuran.IModel.SaveRandomState"/> was called).
+            </summary>
+        </member>
+        <member name="T:Neuran.Loss.CrossEntropy">
+            <summary>
+            The Cross Entropy function.
+            </summary>
+        </member>
+        <member name="M:Neuran.Loss.CrossEntropy.#ctor(ComputeShaders.CSDevice)">
+            <summary>
+            Creates a new instance.
+            </summary>
+            <param name="device"></param>
+        </member>
+        <member name="M:Neuran.Loss.CrossEntropy.GetDerivative(Neuran.Tensor,Neuran.Tensor,Neuran.Tensor,System.Boolean)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Loss.CrossEntropy.GetLoss(Neuran.Tensor,Neuran.Tensor)">
+            <inheritdoc/>
+        </member>
+        <member name="T:Neuran.Loss.ILoss">
+            <summary>
+            The interface for all loss functions.
+            </summary>
+        </member>
+        <member name="M:Neuran.Loss.ILoss.GetLoss(Neuran.Tensor,Neuran.Tensor)">
+            <summary>
+            Returns the loss for the output <paramref name="predictedOutput"/> compared to <paramref name="correctOutput"/>.
+            </summary>
+            <param name="predictedOutput">The predicted output by the network.</param>
+            <param name="correctOutput">The correct output.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Neuran.Loss.ILoss.GetDerivative(Neuran.Tensor,Neuran.Tensor,Neuran.Tensor,System.Boolean)">
+            <summary>
+            Calculates derivative value for the loss function and adds the result to <paramref name="correctOutput"/>.
+            </summary>
+            <param name="predictedOutput">The predicted output by the network.</param>
+            <param name="correctOutput">The correct output.</param>
+            <param name="derivatives">The tensor to store the derivatives results in.</param>
+            <param name="overrideValue">Whether to override the old values in <paramref name="derivatives"/>.</param>
+            <returns></returns>
+        </member>
+        <member name="T:Neuran.Loss.MSE">
+            <summary>
+            The Mean Squared Error function.
+            </summary>
+        </member>
+        <member name="M:Neuran.Loss.MSE.#ctor(ComputeShaders.CSDevice)">
+            <summary>
+            Creates a new instance.
+            </summary>
+            <param name="device"></param>
+        </member>
+        <member name="M:Neuran.Loss.MSE.GetDerivative(Neuran.Tensor,Neuran.Tensor,Neuran.Tensor,System.Boolean)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Loss.MSE.GetLoss(Neuran.Tensor,Neuran.Tensor)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.MNIST.MNIST.GetOrDownloadData(System.String,ComputeShaders.CSDevice)">
+            <summary>
+            Get the mnist data from <paramref name="saveDirectory"/> or download them and save the compressed and uncompressed data in the said directory.
+            Note that the iterators returned store the input as a 3D Tensor.
+            </summary>
+            <param name="saveDirectory">The path to the folder to store the data to.</param>
+            <param name="device">The d3d11 device for the input tensor in both iterators returned.</param>
+            <returns></returns>
+        </member>
+        <member name="P:Neuran.MNIST.MNISTDataIterator.Length">
+            <inheritdoc/>
+        </member>
+        <member name="P:Neuran.MNIST.MNISTDataIterator.SequenceLength">
+            <inheritdoc/>
+        </member>
+        <member name="P:Neuran.MNIST.MNISTDataIterator.LoopSequence">
+            <inheritdoc/>
+        </member>
+        <member name="P:Neuran.MNIST.MNISTDataIterator.DataType">
+            <inheritdoc/>
+        </member>
+        <member name="P:Neuran.MNIST.MNISTDataIterator.OutputLength">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.MNIST.MNISTDataIterator.#ctor(System.String,System.String,Neuran.SequenceType,ComputeShaders.CSDevice)">
+            <summary>
+            
+            </summary>
+            <param name="inputPath"></param>
+            <param name="outputPath"></param>
+            <param name="device"></param>
+        </member>
+        <member name="M:Neuran.MNIST.MNISTDataIterator.GetNext">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.MNIST.MNISTDataIterator.Shuffle(System.Random)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.MNIST.MNISTDataIterator.ResetSequence">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.MNIST.MNISTDataIterator.ResetData">
+            <inheritdoc/>
+        </member>
+        <member name="T:Neuran.Models.ConvolutionLayer">
+            <summary>
+            The class for convolution layers in CNNs.
+            </summary>
+        </member>
+        <member name="P:Neuran.Models.ConvolutionLayer.FilterSize">
+            <summary>
+            The side length of the kernel.
+            </summary>
+        </member>
+        <member name="P:Neuran.Models.ConvolutionLayer.Padding">
+            <summary>
+            The additional length to add (virtually) to the input tensor.
+            </summary>
+        </member>
+        <member name="P:Neuran.Models.ConvolutionLayer.Stride">
+            <summary>
+            The amount of pixels the filter move every iteration.
+            </summary>
+        </member>
+        <member name="M:Neuran.Models.ConvolutionLayer.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Boolean,Neuran.Activations.IActivation,System.Random,ComputeShaders.CSDevice)">
+            <summary>
+            Creates a new instance.
+            </summary>
+            <param name="inputWidth"></param>
+            <param name="inputHeight"></param>
+            <param name="inputDepth"></param>
+            <param name="filterSize"></param>
+            <param name="filtersNum"></param>
+            <param name="stride"></param>
+            <param name="padding"></param>
+            <param name="activation"></param>
+            <param name="random"></param>
+            <param name="device"></param>
+        </member>
+        <member name="P:Neuran.Models.ConvolutionLayer.Output">
+            <inheritdoc/>
+        </member>
+        <member name="P:Neuran.Models.ConvolutionLayer.Input">
+            <inheritdoc/>
+        </member>
+        <member name="P:Neuran.Models.ConvolutionLayer.PreLayerDer">
+            <inheritdoc/>
+        </member>
+        <member name="P:Neuran.Models.ConvolutionLayer.ConnectedFrom">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.ConvolutionLayer.PrepareGD(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.ConvolutionLayer.EndGD">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.ConvolutionLayer.AddParameters(System.Collections.Generic.List{Neuran.Tensor})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.ConvolutionLayer.Backpropagate(Neuran.Tensor[],System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.ConvolutionLayer.Connect(Neuran.GradientDescent.IGradientDescent)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.ConvolutionLayer.ResetGradients">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.ConvolutionLayer.Run(Neuran.Tensor[])">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.ConvolutionLayer.Reset">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.ConvolutionLayer.SaveRandomState">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.ConvolutionLayer.LoadRandomState">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.ConvolutionLayer.Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="P:Neuran.Models.ConvCPU.FilterSize">
+            <summary>
+            The side length of a filter.
+            </summary>
+        </member>
+        <member name="P:Neuran.Models.ConvCPU.Filters">
+            <summary>
+            Tne number of filters in the layer.
+            </summary>
+        </member>
+        <member name="P:Neuran.Models.ConvCPU.Stride">
+            <summary>
+            The layer's stride.
+            </summary>
+        </member>
+        <member name="P:Neuran.Models.ConvCPU.Padding">
+            <summary>
+            The amount of padding used on the layer.
+            </summary>
+        </member>
+        <member name="P:Neuran.Models.ConvGPU.FilterSize">
+            <summary>
+            The side length of a filter.
+            </summary>
+        </member>
+        <member name="P:Neuran.Models.ConvGPU.Filters">
+            <summary>
+            Tne number of filters in the layer.
+            </summary>
+        </member>
+        <member name="P:Neuran.Models.ConvGPU.Stride">
+            <summary>
+            The layer's stride.
+            </summary>
+        </member>
+        <member name="P:Neuran.Models.ConvGPU.Padding">
+            <summary>
+            The amount of padding used on the layer.
+            </summary>
+        </member>
+        <member name="T:Neuran.Models.Dropout">
+            <summary>
+            The dropout layer.
+            </summary>
+        </member>
+        <member name="P:Neuran.Models.Dropout.PreLayerDer">
+            <inheritdoc/>
+        </member>
+        <member name="P:Neuran.Models.Dropout.Enable">
+            <summary>
+            Whether to use dropout.
+            </summary>
+        </member>
+        <member name="M:Neuran.Models.Dropout.#ctor(System.Int32,System.Single,System.Random,ComputeShaders.CSDevice)">
+            <summary>
+            Creates a new instance
+            </summary>
+            <param name="size">The size of the layer (number of neurons)</param>
+            <param name="dropoutRate">The dropout rate [0, 1]</param>
+            <param name="random"></param>
+            <param name="device">d3d11 device</param>
+        </member>
+        <member name="P:Neuran.Models.Dropout.ConnectedFrom">
+            <inheritdoc/>
+        </member>
+        <member name="P:Neuran.Models.Dropout.Output">
+            <inheritdoc/>
+        </member>
+        <member name="P:Neuran.Models.Dropout.Input">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.Dropout.AddParameters(System.Collections.Generic.List{Neuran.Tensor})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.Dropout.Backpropagate(Neuran.Tensor[],System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.Dropout.Connect(Neuran.GradientDescent.IGradientDescent)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.Dropout.Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.Dropout.EndGD">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.Dropout.PrepareGD(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.Dropout.Reset">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.Dropout.ResetGradients">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.Dropout.Run(Neuran.Tensor[])">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.Dropout.SaveRandomState">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.Dropout.LoadRandomState">
+            <inheritdoc/>
+        </member>
+        <member name="P:Neuran.Models.FlatLayer.PreLayerDer">
+            <inheritdoc/>
+        </member>
+        <member name="P:Neuran.Models.FlatLayer.ConnectedFrom">
+            <inheritdoc/>
+        </member>
+        <member name="P:Neuran.Models.FlatLayer.Output">
+            <inheritdoc/>
+        </member>
+        <member name="P:Neuran.Models.FlatLayer.Input">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.FlatLayer.#ctor(System.Int32[],ComputeShaders.CSDevice)">
+            <summary>
+            Creates a new instance.
+            </summary>
+            <param name="dimensions"></param>
+            <param name="device"></param>
+            <param name="type"></param>
+        </member>
+        <member name="M:Neuran.Models.FlatLayer.AddParameters(System.Collections.Generic.List{Neuran.Tensor})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.FlatLayer.Backpropagate(Neuran.Tensor[],System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.FlatLayer.Connect(Neuran.GradientDescent.IGradientDescent)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.FlatLayer.Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.FlatLayer.EndGD">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.FlatLayer.LoadRandomState">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.FlatLayer.PrepareGD(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.FlatLayer.Reset">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.FlatLayer.ResetGradients">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.FlatLayer.Run(Neuran.Tensor[])">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.FlatLayer.SaveRandomState">
+            <inheritdoc/>
+        </member>
+        <member name="T:Neuran.Models.FullyConnectedLayer">
+            <summary>
+            A dense neural network layer.
+            </summary>
+        </member>
+        <member name="P:Neuran.Models.FullyConnectedLayer.PreLayerDer">
+            <inheritdoc/>
+        </member>
+        <member name="P:Neuran.Models.FullyConnectedLayer.ConnectedFrom">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.FullyConnectedLayer.#ctor(System.Int32,System.Int32,Neuran.Activations.IActivation,System.Random,ComputeShaders.CSDevice)">
+            <summary>
+            Creates a new instance.
+            </summary>
+            <param name="input"></param>
+            <param name="output"></param>
+            <param name="activationFunction"></param>
+            <param name="random"></param>
+            <param name="device"></param>
+        </member>
+        <member name="P:Neuran.Models.FullyConnectedLayer.Output">
+            <inheritdoc/>
+        </member>
+        <member name="P:Neuran.Models.FullyConnectedLayer.Input">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.FullyConnectedLayer.EndGD">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.FullyConnectedLayer.PrepareGD(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.FullyConnectedLayer.Reset">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.FullyConnectedLayer.ResetGradients">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.FullyConnectedLayer.Run(Neuran.Tensor[])">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.FullyConnectedLayer.Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.FullyConnectedLayer.AddParameters(System.Collections.Generic.List{Neuran.Tensor})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.FullyConnectedLayer.Backpropagate(Neuran.Tensor[],System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.FullyConnectedLayer.Connect(Neuran.GradientDescent.IGradientDescent)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.FullyConnectedLayer.SaveRandomState">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.FullyConnectedLayer.LoadRandomState">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.CPUFCL.Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.CPUFCL.SaveRandomState">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.CPUFCL.LoadRandomState">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.GPUFCL.SaveRandomState">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.GPUFCL.LoadRandomState">
+            <inheritdoc/>
+        </member>
+        <member name="P:Neuran.Models.GaussianLayer.PreLayerDer">
+            <inheritdoc/>
+        </member>
+        <member name="P:Neuran.Models.GaussianLayer.ConnectedFrom">
+            <inheritdoc/>
+        </member>
+        <member name="P:Neuran.Models.GaussianLayer.Output">
+            <inheritdoc/>
+        </member>
+        <member name="P:Neuran.Models.GaussianLayer.Input">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.GaussianLayer.AddParameters(System.Collections.Generic.List{Neuran.Tensor})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.GaussianLayer.Backpropagate(Neuran.Tensor[],System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.GaussianLayer.Connect(Neuran.GradientDescent.IGradientDescent)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.GaussianLayer.Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.GaussianLayer.EndGD">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.GaussianLayer.LoadRandomState">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.GaussianLayer.PrepareGD(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.GaussianLayer.Reset">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.GaussianLayer.ResetGradients">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.GaussianLayer.Run(Neuran.Tensor[])">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.GaussianLayer.SaveRandomState">
+            <inheritdoc/>
+        </member>
+        <member name="T:Neuran.Models.LayeredModel">
+            <summary>
+            The class for creating layer-based models.
+            </summary>
+        </member>
+        <member name="P:Neuran.Models.LayeredModel.PreLayerDer">
+            <inheritdoc/>
+        </member>
+        <member name="P:Neuran.Models.LayeredModel.ConnectedFrom">
+            <inheritdoc/>
+        </member>
+        <member name="P:Neuran.Models.LayeredModel.Input">
+            <inheritdoc/>
+        </member>
+        <member name="P:Neuran.Models.LayeredModel.Output">
+            <inheritdoc/>
+        </member>
+        <member name="P:Neuran.Models.LayeredModel.Models">
+            <summary>
+            The model's layer.
+            </summary>
+        </member>
+        <member name="M:Neuran.Models.LayeredModel.#ctor(Neuran.GradientDescent.IGradientDescent)">
+            <summary>
+            Creates a new instance.
+            </summary>
+            <param name="firstLayer"></param>
+        </member>
+        <member name="M:Neuran.Models.LayeredModel.AddLayer(Neuran.GradientDescent.IGradientDescent)">
+            <summary>
+            Adds a new layer to the model. Note that the dimensions and the processor type of <paramref name="layer"/> input must match the layer before it.
+            </summary>
+            <param name="layer"></param>
+            <exception cref="T:System.Exception"></exception>
+        </member>
+        <member name="M:Neuran.Models.LayeredModel.Run(Neuran.Tensor[])">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.LayeredModel.AddParameters(System.Collections.Generic.List{Neuran.Tensor})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.LayeredModel.Backpropagate(Neuran.Tensor[],System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.LayeredModel.Connect(Neuran.GradientDescent.IGradientDescent)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.LayeredModel.Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.LayeredModel.EndGD">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.LayeredModel.PrepareGD(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.LayeredModel.Reset">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.LayeredModel.ResetGradients">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.LayeredModel.SaveRandomState">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.LayeredModel.LoadRandomState">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.LSTM.#ctor(System.Int32,System.Int32,System.Random,ComputeShaders.CSDevice)">
+            <summary>
+            Creates a new instance.
+            </summary>
+            <param name="input"></param>
+            <param name="output"></param>
+        </member>
+        <member name="M:Neuran.Models.LSTM.PrepareGD(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.LSTM.Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.LSTM.EndGD">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.LSTM.AddParameters(System.Collections.Generic.List{Neuran.Tensor})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.LSTM.Connect(Neuran.GradientDescent.IGradientDescent)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.LSTM.ResetGradients">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.LSTM.Reset">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.LSTM.SaveRandomState">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.LSTM.LoadRandomState">
+            <inheritdoc/>
+        </member>
+        <member name="T:Neuran.Models.MaxPoolLayer">
+            <summary>
+            The max pool layer
+            </summary>
+        </member>
+        <member name="M:Neuran.Models.MaxPoolLayer.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,ComputeShaders.CSDevice)">
+            <summary>
+            Creates a new instance
+            </summary>
+            <param name="inputWidth"></param>
+            <param name="inputHeight"></param>
+            <param name="inputDepth"></param>
+            <param name="poolSize"></param>
+            <param name="stride"></param>
+            <param name="device"></param>
+        </member>
+        <member name="P:Neuran.Models.MaxPoolLayer.Output">
+            <inheritdoc/>
+        </member>
+        <member name="P:Neuran.Models.MaxPoolLayer.Input">
+            <inheritdoc/>
+        </member>
+        <member name="P:Neuran.Models.MaxPoolLayer.PreLayerDer">
+            <inheritdoc/>
+        </member>
+        <member name="P:Neuran.Models.MaxPoolLayer.ConnectedFrom">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.MaxPoolLayer.PrepareGD(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.MaxPoolLayer.EndGD">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.MaxPoolLayer.AddParameters(System.Collections.Generic.List{Neuran.Tensor})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.MaxPoolLayer.Backpropagate(Neuran.Tensor[],System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.MaxPoolLayer.Connect(Neuran.GradientDescent.IGradientDescent)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.MaxPoolLayer.ResetGradients">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.MaxPoolLayer.Run(Neuran.Tensor[])">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.MaxPoolLayer.Reset">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.MaxPoolLayer.SaveRandomState">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.MaxPoolLayer.LoadRandomState">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.MaxPoolLayer.Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="T:Neuran.Models.MultiHeadLayer">
+            <summary>
+            A layer that splits input tensor(s) to multiple models in parallel.
+            </summary>
+        </member>
+        <member name="P:Neuran.Models.MultiHeadLayer.PreLayerDer">
+            <inheritdoc/>
+        </member>
+        <member name="P:Neuran.Models.MultiHeadLayer.ConnectedFrom">
+            <inheritdoc/>
+        </member>
+        <member name="P:Neuran.Models.MultiHeadLayer.Output">
+            <inheritdoc/>
+        </member>
+        <member name="P:Neuran.Models.MultiHeadLayer.Input">
+            <inheritdoc/>
+        </member>
+        <member name="P:Neuran.Models.MultiHeadLayer.Models">
+            <summary>
+            The models connected in parallel.
+            </summary>
+        </member>
+        <member name="P:Neuran.Models.MultiHeadLayer.MultipleInput">
+            <summary>
+            Whether the input of every model in <see cref="P:Neuran.Models.MultiHeadLayer.Models"/> is a seperate tensor array in <see cref="P:Neuran.Models.MultiHeadLayer.Input"/> or all share the same input.
+            </summary>
+        </member>
+        <member name="M:Neuran.Models.MultiHeadLayer.#ctor(Neuran.GradientDescent.IGradientDescent[],System.Boolean)">
+            <summary>
+            
+            </summary>
+            <param name="models">The models connected in parallel.</param>
+            <param name="multipleInput">Whether the input of every model in <see cref="P:Neuran.Models.MultiHeadLayer.Models"/> is a seperate tensor array in <see cref="P:Neuran.Models.MultiHeadLayer.Input"/> or all share the same input. Note that if <paramref name="multipleInput"/> is false, then all models must share the same input structure and properties (cpu or gpu).</param>
+        </member>
+        <member name="M:Neuran.Models.MultiHeadLayer.AddParameters(System.Collections.Generic.List{Neuran.Tensor})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.MultiHeadLayer.Backpropagate(Neuran.Tensor[],System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.MultiHeadLayer.Connect(Neuran.GradientDescent.IGradientDescent)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.MultiHeadLayer.Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.MultiHeadLayer.EndGD">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.MultiHeadLayer.LoadRandomState">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.MultiHeadLayer.PrepareGD(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.MultiHeadLayer.Reset">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.MultiHeadLayer.ResetGradients">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.MultiHeadLayer.Run(Neuran.Tensor[])">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.MultiHeadLayer.SaveRandomState">
+            <inheritdoc/>
+        </member>
+        <member name="P:Neuran.Models.ProcessorConverter.PreLayerDer">
+            <inheritdoc/>
+        </member>
+        <member name="P:Neuran.Models.ProcessorConverter.ConnectedFrom">
+            <inheritdoc/>
+        </member>
+        <member name="P:Neuran.Models.ProcessorConverter.Output">
+            <inheritdoc/>
+        </member>
+        <member name="P:Neuran.Models.ProcessorConverter.Input">
+            <inheritdoc/>
+        </member>
+        <member name="P:Neuran.Models.ProcessorConverter.ConversionType">
+            <summary>
+            The type of conversion.
+            </summary>
+        </member>
+        <member name="M:Neuran.Models.ProcessorConverter.#ctor(System.Int32[],ComputeShaders.CSDevice,Neuran.Models.ProcessorConversionType)">
+            <summary>
+            Creates a new instance.
+            </summary>
+            <param name="dimensions"></param>
+            <param name="device"></param>
+            <param name="type"></param>
+        </member>
+        <member name="M:Neuran.Models.ProcessorConverter.AddParameters(System.Collections.Generic.List{Neuran.Tensor})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.ProcessorConverter.Backpropagate(Neuran.Tensor[],System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.ProcessorConverter.Connect(Neuran.GradientDescent.IGradientDescent)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.ProcessorConverter.Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.ProcessorConverter.EndGD">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.ProcessorConverter.LoadRandomState">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.ProcessorConverter.PrepareGD(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.ProcessorConverter.Reset">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.ProcessorConverter.ResetGradients">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.ProcessorConverter.Run(Neuran.Tensor[])">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.ProcessorConverter.SaveRandomState">
+            <inheritdoc/>
+        </member>
+        <member name="T:Neuran.Models.ProcessorConversionType">
+            <summary>
+            An enum for <see cref="T:Neuran.Models.ProcessorConverter"/>.
+            </summary>
+        </member>
+        <member name="F:Neuran.Models.ProcessorConversionType.CPUToGPU">
+            <summary>
+            Convert from cpu tensor to gpu tensor.
+            </summary>
+        </member>
+        <member name="F:Neuran.Models.ProcessorConversionType.GPUToCPU">
+            <summary>
+            Convert from gpu tensor to cpu tensor.
+            </summary>
+        </member>
+        <member name="T:Neuran.Models.RecurrentCaller">
+            <summary>
+            A model used to recurrently call a model when backpropagating.
+            </summary>
+        </member>
+        <member name="P:Neuran.Models.RecurrentCaller.PreLayerDer">
+            <inheritdoc/>
+        </member>
+        <member name="P:Neuran.Models.RecurrentCaller.RecurrentModel">
+            <summary>
+            The recurrent model model to call its backpropagation function.
+            </summary>
+        </member>
+        <member name="P:Neuran.Models.RecurrentCaller.ConnectedFrom">
+            <inheritdoc/>
+        </member>
+        <member name="P:Neuran.Models.RecurrentCaller.Output">
+            <inheritdoc/>
+        </member>
+        <member name="P:Neuran.Models.RecurrentCaller.Input">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.RecurrentCaller.#ctor(Neuran.GradientDescent.IGradientDescent,Neuran.Tensor,System.Func{System.ValueTuple{Neuran.Tensor,Neuran.Tensor}},System.Action{Neuran.Tensor,Neuran.Tensor,Neuran.Tensor})">
+            <summary>
+            Creates a new instance.
+            </summary>
+            <param name="recurrentModel">The recurrent model.</param>
+            <param name="createPreDer">The function to create the normal and recurrent preLayer derivative tensors (respectively) when backpropagating.</param>
+            <param name="updatePreDer">The function to copy the recurrent data to the recurrent preLayer derivative tensor (and everthing else to the 'normal' preLayer derivative) where the first input is the next layer preLayer derivative and the second is this preLayer derivative tensor and the third is the 'normal' preLayer derivative.</param>
+        </member>
+        <member name="M:Neuran.Models.RecurrentCaller.AddParameters(System.Collections.Generic.List{Neuran.Tensor})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.RecurrentCaller.Backpropagate(Neuran.Tensor[],System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.RecurrentCaller.Connect(Neuran.GradientDescent.IGradientDescent)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.RecurrentCaller.EndGD">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.RecurrentCaller.PrepareGD(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.RecurrentCaller.Reset">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.RecurrentCaller.ResetGradients">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.RecurrentCaller.Run(Neuran.Tensor[])">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.RecurrentCaller.Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.RecurrentCaller.SaveRandomState">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.RecurrentCaller.LoadRandomState">
+            <inheritdoc/>
+        </member>
+        <member name="P:Neuran.Models.RecurrentLayer.PreLayerDer">
+            <inheritdoc/>
+        </member>
+        <member name="P:Neuran.Models.RecurrentLayer.ConnectedFrom">
+            <inheritdoc/>
+        </member>
+        <member name="P:Neuran.Models.RecurrentLayer.Output">
+            <inheritdoc/>
+        </member>
+        <member name="P:Neuran.Models.RecurrentLayer.Input">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.RecurrentLayer.#ctor(System.Int32,System.Int32,Neuran.GradientDescent.IGradientDescent[],ComputeShaders.CSDevice)">
+            <summary>
+            Creates a new instance.
+            </summary>
+            <param name="input">Input neurons.</param>
+            <param name="output">Output neurons.</param>
+            <param name="layers">Network's layer. Note: the first layer's input length must be <paramref name="input"/> and the last layer's input length must be <paramref name="output"/></param>
+            <param name="device"></param>
+        </member>
+        <member name="M:Neuran.Models.RecurrentLayer.AddParameters(System.Collections.Generic.List{Neuran.Tensor})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.RecurrentLayer.Backpropagate(Neuran.Tensor[],System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.RecurrentLayer.Connect(Neuran.GradientDescent.IGradientDescent)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.RecurrentLayer.Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.RecurrentLayer.EndGD">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.RecurrentLayer.PrepareGD(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.RecurrentLayer.Reset">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.RecurrentLayer.ResetGradients">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.RecurrentLayer.Run(Neuran.Tensor[])">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.RecurrentLayer.SaveRandomState">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.RecurrentLayer.LoadRandomState">
+            <inheritdoc/>
+        </member>
+        <member name="T:Neuran.Models.ReverseFlatLayer">
+            <summary>
+            A layer to convert a 1D tensor to 2D/3D tensors
+            </summary>
+        </member>
+        <member name="P:Neuran.Models.ReverseFlatLayer.PreLayerDer">
+            <inheritdoc/>
+        </member>
+        <member name="P:Neuran.Models.ReverseFlatLayer.ConnectedFrom">
+            <inheritdoc/>
+        </member>
+        <member name="P:Neuran.Models.ReverseFlatLayer.Output">
+            <inheritdoc/>
+        </member>
+        <member name="P:Neuran.Models.ReverseFlatLayer.Input">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.ReverseFlatLayer.#ctor(System.Int32[],ComputeShaders.CSDevice)">
+            <summary>
+            Creates a new instance.
+            </summary>
+            <param name="dimensions"></param>
+            <param name="device"></param>
+            <param name="type"></param>
+        </member>
+        <member name="M:Neuran.Models.ReverseFlatLayer.AddParameters(System.Collections.Generic.List{Neuran.Tensor})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.ReverseFlatLayer.Backpropagate(Neuran.Tensor[],System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.ReverseFlatLayer.Connect(Neuran.GradientDescent.IGradientDescent)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.ReverseFlatLayer.Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.ReverseFlatLayer.EndGD">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.ReverseFlatLayer.LoadRandomState">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.ReverseFlatLayer.PrepareGD(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.ReverseFlatLayer.Reset">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.ReverseFlatLayer.ResetGradients">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.ReverseFlatLayer.Run(Neuran.Tensor[])">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.ReverseFlatLayer.SaveRandomState">
+            <inheritdoc/>
+        </member>
+        <member name="P:Neuran.Models.VectorConcatenationLayer.PreLayerDer">
+            <inheritdoc/>
+        </member>
+        <member name="P:Neuran.Models.VectorConcatenationLayer.ConnectedFrom">
+            <inheritdoc/>
+        </member>
+        <member name="P:Neuran.Models.VectorConcatenationLayer.Output">
+            <inheritdoc/>
+        </member>
+        <member name="P:Neuran.Models.VectorConcatenationLayer.Input">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.VectorConcatenationLayer.AddParameters(System.Collections.Generic.List{Neuran.Tensor})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.VectorConcatenationLayer.Backpropagate(Neuran.Tensor[],System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.VectorConcatenationLayer.Connect(Neuran.GradientDescent.IGradientDescent)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.VectorConcatenationLayer.Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.VectorConcatenationLayer.EndGD">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.VectorConcatenationLayer.LoadRandomState">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.VectorConcatenationLayer.PrepareGD(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.VectorConcatenationLayer.Reset">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.VectorConcatenationLayer.ResetGradients">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.VectorConcatenationLayer.Run(Neuran.Tensor[])">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.VectorConcatenationLayer.SaveRandomState">
+            <inheritdoc/>
+        </member>
+        <member name="P:Neuran.Models.ZeroPadding.PreLayerDer">
+            <inheritdoc/>
+        </member>
+        <member name="P:Neuran.Models.ZeroPadding.ConnectedFrom">
+            <inheritdoc/>
+        </member>
+        <member name="P:Neuran.Models.ZeroPadding.Output">
+            <inheritdoc/>
+        </member>
+        <member name="P:Neuran.Models.ZeroPadding.Input">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.ZeroPadding.AddParameters(System.Collections.Generic.List{Neuran.Tensor})">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.ZeroPadding.Backpropagate(Neuran.Tensor[],System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.ZeroPadding.Connect(Neuran.GradientDescent.IGradientDescent)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.ZeroPadding.Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.ZeroPadding.EndGD">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.ZeroPadding.LoadRandomState">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.ZeroPadding.PrepareGD(System.Int32)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.ZeroPadding.Reset">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.ZeroPadding.ResetGradients">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.ZeroPadding.Run(Neuran.Tensor[])">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Models.ZeroPadding.SaveRandomState">
+            <inheritdoc/>
+        </member>
+        <member name="T:Neuran.Optimizers.IOptimizer">
+            <summary>
+            The interface for all optimizers.
+            </summary>
+        </member>
+        <member name="M:Neuran.Optimizers.IOptimizer.AddParameter(Neuran.Tensor)">
+            <summary>
+            Adds a new parameter.
+            </summary>
+            <param name="parameter"></param>
+        </member>
+        <member name="M:Neuran.Optimizers.IOptimizer.ApplyAll">
+            <summary>
+            Apply the algorithm to all tensors added. and resets their gradients.
+            </summary>
+        </member>
+        <member name="T:Neuran.Optimizers.Adam">
+            <summary>
+            Stochastic Gradient Descent.
+            </summary>
+        </member>
+        <member name="P:Neuran.Optimizers.Adam.LearningRate">
+            <summary>
+            The step size.
+            </summary>
+        </member>
+        <member name="P:Neuran.Optimizers.Adam.Beta1">
+            <summary>
+            The Exponential decay rate 1
+            </summary>
+        </member>
+        <member name="P:Neuran.Optimizers.Adam.Beta2">
+            <summary>
+            The Exponential decay rate 2
+            </summary>
+        </member>
+        <member name="M:Neuran.Optimizers.Adam.#ctor(System.Single,System.Single,System.Single)">
+            <summary>
+            Creates a new instance.
+            </summary>
+        </member>
+        <member name="M:Neuran.Optimizers.Adam.AddParameter(Neuran.Tensor)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Optimizers.Adam.ApplyAll">
+            <inheritdoc/>
+        </member>
+        <member name="T:Neuran.Optimizers.AdamInfo">
+            <summary>
+            The struct used to store information for GPU Adam.
+            </summary>
+        </member>
+        <member name="T:Neuran.Optimizers.SGD">
+            <summary>
+            Stochastic Gradient Descent.
+            </summary>
+        </member>
+        <member name="P:Neuran.Optimizers.SGD.LearningRate">
+            <summary>
+            The step size.
+            </summary>
+        </member>
+        <member name="M:Neuran.Optimizers.SGD.#ctor(System.Single)">
+            <summary>
+            Creates a new instance.
+            </summary>
+        </member>
+        <member name="M:Neuran.Optimizers.SGD.AddParameter(Neuran.Tensor)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Optimizers.SGD.ApplyAll">
+            <inheritdoc/>
+        </member>
+        <member name="T:Neuran.Optimizers.SGDM">
+            <summary>
+            SGD with Momentum
+            </summary>
+        </member>
+        <member name="P:Neuran.Optimizers.SGDM.LearningRate">
+            <summary>
+            The step size.
+            </summary>
+        </member>
+        <member name="M:Neuran.Optimizers.SGDM.#ctor(System.Single,System.Single)">
+            <summary>
+            Creates a new instance.
+            </summary>
+        </member>
+        <member name="M:Neuran.Optimizers.SGDM.AddParameter(Neuran.Tensor)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Optimizers.SGDM.ApplyAll">
+            <inheritdoc/>
+        </member>
+        <member name="T:Neuran.Optimizers.SWATS">
+            <summary>
+            SWATS: SWitching from Adam To Sgd.  source: https://arxiv.org/pdf/1712.07628
+            <br>NO GPU SUPPORT YET!</br>
+            </summary>
+        </member>
+        <member name="P:Neuran.Optimizers.SWATS.LearningRate">
+            <summary>
+            The step size.
+            </summary>
+        </member>
+        <member name="P:Neuran.Optimizers.SWATS.Beta1">
+            <summary>
+            The Exponential decay rate 1
+            </summary>
+        </member>
+        <member name="P:Neuran.Optimizers.SWATS.Beta2">
+            <summary>
+            The Exponential decay rate 2
+            </summary>
+        </member>
+        <member name="P:Neuran.Optimizers.SWATS.PhaseSGD">
+            <summary>
+            Represents the current state of this optimizer (Adam or SGD)
+            </summary>
+        </member>
+        <member name="M:Neuran.Optimizers.SWATS.AddParameter(Neuran.Tensor)">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Optimizers.SWATS.ApplyAll">
+            <inheritdoc/>
+        </member>
+        <member name="T:Neuran.ProcessorType">
+            <summary>
+            An enum for the type of processor used to process information
+            </summary>
+        </member>
+        <member name="F:Neuran.ProcessorType.CPU">
+            <summary>
+            The object operates on the CPU.
+            </summary>
+        </member>
+        <member name="F:Neuran.ProcessorType.GPU">
+            <summary>
+            The object operates on the GPU.
+            </summary>
+        </member>
+        <member name="T:Neuran.SequenceType">
+            <summary>
+            The types of sequence data.
+            </summary>
+        </member>
+        <member name="F:Neuran.SequenceType.ManyToMany">
+            <summary>
+            Every input correspond to a output.
+            </summary>
+        </member>
+        <member name="F:Neuran.SequenceType.DelayedManyToMany">
+            <summary>
+            This is used when we run the model with all the inputs, after that we take output from the model.
+            </summary>
+        </member>
+        <member name="F:Neuran.SequenceType.ManyToOne">
+            <summary>
+            All the inputs correspond to a single output. This in a sequence means that after inputting running all input data in a sequence the last output from the model is considered.
+            </summary>
+        </member>
+        <member name="F:Neuran.SequenceType.OneToMany">
+            <summary>
+            The first input correspond to all outputs in the sequence. This in a sequence means that running the first input should give the first output. Afterwards, the model is run with no input (zero tensor) and the output is considered (in recurrent models).
+            </summary>
+        </member>
+        <member name="T:Neuran.Tensor">
+            <summary>
+            A class that stores data in a n-dimensional space.
+            <br>Note that if it is a gpu tensor, it is able to store up to 3d data only:</br>
+            <br>1d tensors are stored as StructuredBuffer in hlsl shaders.</br>
+            <br>2d tensors are stored as Texture2D (float) in hlsl shaders.</br>
+            <br>1d tensors are stored as Texture2DArray (float) in hlsl shaders.</br>
+            </summary>
+        </member>
+        <member name="P:Neuran.Tensor.ProcessorType">
+            <summary>
+            What processor does the tensor operate/store data on.
+            </summary>
+        </member>
+        <member name="P:Neuran.Tensor.CreateNewTexture">
+            <summary>
+            If true, when copying to a 2D/3D GPU Tensor, instead of using <see cref="!:ShaderResource&lt;T&gt;.UpdateSubresource(IntPtr)"/> it will dispose the currect shader resource and create a new one with the data to copy to (usually faster).
+            </summary>
+        </member>
+        <member name="P:Neuran.Tensor.Dimensions">
+            <summary>
+            The dimensions of the tensor.
+            </summary>
+        </member>
+        <member name="P:Neuran.Tensor.TensorLength">
+            <summary>
+            The total number of elements in the tensor.
+            </summary>
+        </member>
+        <member name="P:Neuran.Tensor.Gradient">
+            <summary>
+            A tensor to store tensor gradient.
+            </summary>
+        </member>
+        <member name="M:Neuran.Tensor.#ctor(ComputeShaders.CSDevice,System.Int32[])">
+            <summary>
+            Creates a new tensor.
+            </summary>
+            <param name="device">Direct3D11 device. If this is a CPU tensor pass null.</param>
+            <param name="dimensions">The dimensions of the tensor. Note for GPU tensors its length should not exceed 3.</param>
+        </member>
+        <member name="M:Neuran.Tensor.#ctor(ComputeShaders.CSDevice,System.Single[])">
+            <summary>
+            Creates a new 1D GPU tensor storing data from <paramref name="order1_data"/>.
+            </summary>
+            <param name="device">Direct3D11 device.</param>
+            <param name="order1_data">The data.</param>
+        </member>
+        <member name="M:Neuran.Tensor.GetData">
+            <summary>
+            Returns the data stored in the Tensor.
+            <br>Note: the returned array is the exact reference data stored on the tensor if it was a cpu tensor.
+            On the gpu tensor however, it is a copy.</br>
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:Neuran.Tensor.Item(System.Int32[])">
+            <summary>
+            Access the data stored. CPU ONLY
+            </summary>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="P:Neuran.Tensor.Item(System.Int32)">
+            <summary>
+            Access the data stored as a flat array. CPU ONLY
+            </summary>
+            <param name="index"></param>
+            <returns></returns>
+        </member>
+        <member name="M:Neuran.Tensor.AccessRawData(ComputeShaders.CPUAccessMode,System.Action{ComputeShaders.TextureDataBox})">
+            <summary>
+            Gives access to the raw data. GPU ONLY
+            </summary>
+            <param name="accessMode"></param>
+            <param name="accessAction"></param>
+        </member>
+        <member name="M:Neuran.Tensor.ElementPosition(ComputeShaders.TextureDataBox,System.Int32)">
+            <summary>
+            Returns the element data pointer.
+            </summary>
+            <param name="box"></param>
+            <param name="index">Element index (in a flat array).</param>
+            <returns></returns>
+        </member>
+        <member name="M:Neuran.Tensor.SetUAV(System.Int32)">
+            <summary>
+            Sets the resource uav (Unordered Access View).
+            </summary>
+            <param name="uav_index"></param>
+        </member>
+        <member name="M:Neuran.Tensor.CopyTo(Neuran.Tensor,Neuran.TensorBox,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Copies the contents of this tensor to <paramref name="destination"/> regardless of the <see cref="P:Neuran.Tensor.ProcessorType"/>.
+            </summary>
+            <param name="destination"></param>
+            <param name="srcBox">The source tensor data box to copy.</param>
+            <param name="dstX">The x-coordinate of the pixel in destination to start copy to.</param>
+            <param name="dstY">The y-coordinate of the pixel in destination to start copy to.</param>
+            <param name="dstZ">The z-coordinate of the pixel in destination to start copy to.</param>
+        </member>
+        <member name="M:Neuran.Tensor.CopyTo(Neuran.Tensor)">
+            <summary>
+            Copies the contents of this tensor to <paramref name="destination"/> regardless of the <see cref="P:Neuran.Tensor.ProcessorType"/>.
+            <br>Note that both tensors must have the exact same dimensions if this tensor operates on the GPU, and the same total length of on CPU</br>
+            </summary>
+            <param name="destination"></param>
+        </member>
+        <member name="M:Neuran.Tensor.UpdateRawData(System.IntPtr)">
+            <summary>
+            Updates the data stored in the tensor with new data from <paramref name="data"/>.
+            </summary>
+            <param name="data">The new data.</param>
+        </member>
+        <member name="M:Neuran.Tensor.CreateGradient">
+            <summary>
+            Creates a new gradient tensor.
+            <br>Note that this tensor is only used to store gradients not calculating them.</br>
+            </summary>
+        </member>
+        <member name="M:Neuran.Tensor.DisposeGradient">
+            <summary>
+            Disposes of the gradient tensor.
+            </summary>
+        </member>
+        <member name="M:Neuran.Tensor.Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Tensor.EmptyClone">
+            <summary>
+            Returns an empty clone of the tensor.
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:Neuran.TensorBox">
+            <summary>
+            A struct for enclosing data regions in a tensor up to 3 dimensions.
+            </summary>
+        </member>
+        <member name="F:Neuran.TensorBox.StartX">
+            <summary>
+            The x-coordinate of the starting position of the box.
+            </summary>
+        </member>
+        <member name="F:Neuran.TensorBox.StartY">
+            <summary>
+            The y-coordinate of the starting position of the box. For 1D tesnors, this should be 0.
+            </summary>
+        </member>
+        <member name="F:Neuran.TensorBox.StartZ">
+            <summary>
+            The z-coordinate of the starting position of the box. For 1D and 2D tesnors, this should be 0.
+            </summary>
+        </member>
+        <member name="F:Neuran.TensorBox.CountX">
+            <summary>
+            The width of the box in elements.
+            </summary>
+        </member>
+        <member name="F:Neuran.TensorBox.CountY">
+            <summary>
+            The height of the box in elements. For 1D tesnors, this should be 1.
+            </summary>
+        </member>
+        <member name="F:Neuran.TensorBox.CountZ">
+            <summary>
+            The depth of the box in elements. For 1D and 2D tesnors, this should be 1.
+            </summary>
+        </member>
+        <member name="M:Neuran.TensorBox.#ctor(System.Int32,System.Int32)">
+            <summary>
+            Creates a new box to enclose data in a 1D Tensor.
+            </summary>
+            <param name="startX">The x-coordinate of the starting position of the box.</param>
+            <param name="countX">The width of the box in elements.</param>
+        </member>
+        <member name="M:Neuran.TensorBox.#ctor(System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Creates a new box to enclose data in a 2D Tensor.
+            </summary>
+            <param name="startX">The x-coordinate of the starting position of the box.</param>
+            <param name="countX">The width of the box in elements.</param>
+            <param name="startY">The y-coordinate of the starting position of the box.</param>
+            <param name="countY">The height of the box in elements.</param>
+        </member>
+        <member name="M:Neuran.TensorBox.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            Creates a new box to enclose data in a 2D Tensor.
+            </summary>
+            <param name="startX">The x-coordinate of the starting position of the box.</param>
+            <param name="countX">The width of the box in elements.</param>
+            <param name="startY">The y-coordinate of the starting position of the box.</param>
+            <param name="countY">The height of the box in elements.</param>
+            <param name="startZ">The z-coordinate of the starting position of the box.</param>
+            <param name="countZ">The depth of the box in elements.</param>
+        </member>
+        <member name="T:Neuran.TensorData">
+            <summary>
+            A class to store tensor's data.
+            </summary>
+        </member>
+        <member name="P:Neuran.TensorData.Dimensions">
+            <summary>
+            The dimensions of the data.
+            </summary>
+        </member>
+        <member name="P:Neuran.TensorData.Data">
+            <summary>
+            Tensor's data.
+            </summary>
+        </member>
+        <member name="M:Neuran.TensorData.#ctor(System.Int32[],System.Single[])">
+            <summary>
+            Creates a new instance
+            </summary>
+            <param name="dimensions">The dimensions of the data.</param>
+            <param name="data">Tensor's data.</param>
+        </member>
+        <member name="T:Neuran.Utilities.TensorOperations">
+            <summary>
+            A class that contains some useful tensor (cpu/gpu) operations 
+            </summary>
+        </member>
+        <member name="M:Neuran.Utilities.TensorOperations.Add(Neuran.Tensor,Neuran.Tensor)">
+            <summary>
+            Applies the addition operation for both tensors and save results in <paramref name="tensor"/> (this).
+            <br>Note that both tensors must have the same <see cref="T:Neuran.ProcessorType"/> and Dimensions.</br>
+            </summary>
+            <param name="tensor"></param>
+            <param name="other"></param>
+        </member>
+        <member name="M:Neuran.Utilities.TensorOperations.Divide(Neuran.Tensor,System.Single)">
+            <summary>
+            Applies the addition operation for both tensors and save results in <paramref name="tensor"/>.
+            <br>Note that both tensors must have the same <see cref="T:Neuran.ProcessorType"/> and Dimensions.</br>
+            </summary>
+            <param name="tensor"></param>
+            <param name="denominator"></param>
+        </member>
+        <member name="M:Neuran.Utilities.TensorOperations.Multiply(Neuran.Tensor,System.Single)">
+            <summary>
+            Applies the addition operation for both tensors and save results in <paramref name="tensor"/>.
+            <br>Note that both tensors must have the same <see cref="T:Neuran.ProcessorType"/> and Dimensions.</br>
+            </summary>
+            <param name="tensor"></param>
+            <param name="value"></param>
+        </member>
+        <member name="M:Neuran.Utilities.TensorOperations.Zero(Neuran.Tensor)">
+            <summary>
+            Sets the value of every element in the tensor to 0.
+            </summary>
+            <param name="tensor"></param>
+        </member>
+        <member name="M:Neuran.Utilities.TensorOperations.Multiply(Neuran.Tensor,Neuran.Tensor)">
+            <summary>
+            Applies the multiplication operation for both tensors and save results in <paramref name="tensor"/> (this).
+            <br>Note that both tensors must have the same <see cref="T:Neuran.ProcessorType"/> and Dimensions.</br>
+            </summary>
+            <param name="tensor"></param>
+            <param name="other"></param>
+        </member>
+        <member name="M:Neuran.Utilities.TensorOperations.Exp(Neuran.Tensor,Neuran.Tensor)">
+            <summary>
+            Calculates the exp() of every element in <paramref name="other"/> and save the result in <paramref name="tensor"/> (this).
+            <br>Note that both tensors must have the same <see cref="T:Neuran.ProcessorType"/> and Dimensions.</br>
+            </summary>
+            <param name="input"></param>
+            <param name="output"></param>
+        </member>
+        <member name="T:Neuran.Utilities.TensorGPUSummation">
+            <summary>
+            A class tha helps in getting the summation of a tensor (or a number of tensors as batches seperately).
+            </summary>
+        </member>
+        <member name="P:Neuran.Utilities.TensorGPUSummation.Input">
+            <summary>
+            The input tensor to sum data from.
+            </summary>
+        </member>
+        <member name="M:Neuran.Utilities.TensorGPUSummation.Sum(System.Int32,System.Int32,System.Boolean,Neuran.Tensor,System.Int32,Neuran.Tensor[])">
+            <summary>
+            Returns the sum of data in <paramref name="inputs"/>.
+            </summary>
+            <param name="groupSize">The value to sum every iteration in the gpu. if the length of a single tensor in <paramref name="inputs"/> is less than this, it will be adjusted automatically.</param>
+            <param name="batchSize">The number of tensors to process at once in the gpu. if the number of tensors in <paramref name="inputs"/> is less than this, it will be adjusted automatically.</param>
+            <param name="seperate">Whether to return every tensor's sum seperately in the sum array (returned tensor) or to sum all the tensors to one value. This is always true when <paramref name="result"/> != null</param>
+            <param name="result">This is a gpu tensor used to save the results to it (to avoid creating a new gpu tensor). If null, this function will create a cpu result tensor.</param>
+            <param name="resultOffset">The index to start copy results to (in <paramref name="result"/>).</param>
+            <param name="inputs">The input data. Note that the tensor's length must be equal.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Neuran.Utilities.TensorGPUSummation.L2NormSqr(System.Int32,System.Int32,Neuran.Tensor,System.Int32,Neuran.Tensor[])">
+            <summary>
+            Returns the squared l2 norm of data in <paramref name="inputs"/>.
+            </summary>
+            <param name="groupSize">The value to sum every iteration in the gpu. if the length of a single tensor in <paramref name="inputs"/> is less than this, it will be adjusted automatically.</param>
+            <param name="batchSize">The number of tensors to process at once in the gpu. if the number of tensors in <paramref name="inputs"/> is less than this, it will be adjusted automatically.</param>
+            <param name="result">This is a gpu tensor used to save the results to it (to avoid creating a new gpu tensor). If null, this function will create a cpu result tensor.</param>
+            <param name="resultOffset">The index to start copy results to (in <paramref name="result"/>).</param>
+            <param name="inputs">The input data. Note that the tensor's length must be equal.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Neuran.Utilities.TensorGPUSummation.RunFromInput(System.Int32,System.Int32,Neuran.Tensor,System.Int32,System.Int32)">
+            <summary>
+            Get the sum of <see cref="P:Neuran.Utilities.TensorGPUSummation.Input"/>
+            </summary>
+            <param name="TensorLength">The length of a single tensor.</param>
+            <param name="TensorsNum">The number of tensors.</param>
+            <param name="result">The result tensor to save results to. Its length must be >= <paramref name="TensorsNum"/>.</param>
+            <param name="resultOffset">The index to start copy results to (in <paramref name="result"/>).</param>
+            <param name="groupSize">The value to sum every iteration in the gpu. if <paramref name="TensorLength"/> is less than this, it will be adjusted automatically.</param>
+            <returns></returns>
+        </member>
+        <member name="M:Neuran.Utilities.TensorGPUSummation.Dispose">
+            <inheritdoc/>
+        </member>
+        <member name="M:Neuran.Utilities.UtilitiesFuncs.RandomGaussain(System.Double,System.Double,System.Random)">
+            <summary>
+            Return normal distribution number
+            </summary>
+            <param name="Mean">The common number in range</param>
+            <param name="StanDev">The positive of range</param>
+            <param name="rand">Random seed</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

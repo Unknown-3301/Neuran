@@ -1,0 +1,11 @@
+C:\Users\unkno\Documents\Visual Studio Projects\Neuran\bin\Release\Neuran.xml
+C:\Users\unkno\Documents\Visual Studio Projects\Neuran\bin\Release\Neuran.dll
+C:\Users\unkno\Documents\Visual Studio Projects\Neuran\bin\Release\Neuran.pdb
+C:\Users\unkno\Documents\Visual Studio Projects\Neuran\bin\Release\ComputeShaders.dll
+C:\Users\unkno\Documents\Visual Studio Projects\Neuran\bin\Release\ComputeShaders.pdb
+C:\Users\unkno\Documents\Visual Studio Projects\Neuran\bin\Release\ComputeShaders.xml
+C:\Users\unkno\Documents\Visual Studio Projects\Neuran\obj\Release\Neuran.csproj.AssemblyReference.cache
+C:\Users\unkno\Documents\Visual Studio Projects\Neuran\obj\Release\Neuran.csproj.CoreCompileInputs.cache
+C:\Users\unkno\Documents\Visual Studio Projects\Neuran\obj\Release\Neuran.csproj.CopyComplete
+C:\Users\unkno\Documents\Visual Studio Projects\Neuran\obj\Release\Neuran.dll
+C:\Users\unkno\Documents\Visual Studio Projects\Neuran\obj\Release\Neuran.pdb

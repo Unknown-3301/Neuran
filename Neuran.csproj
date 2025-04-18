@@ -1,0 +1,151 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{AF5C7833-0193-403B-BFFB-FA0B4F295B6C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>Neuran</RootNamespace>
+    <AssemblyName>Neuran</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DocumentationFile>bin\Debug\Neuran.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <DocumentationFile>bin\Release\Neuran.xml</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="ComputeShaders">
+      <HintPath>..\ComputeShaders\bin\Debug\ComputeShaders.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Activations\Exponential.cs" />
+    <Compile Include="Activations\IActivation.cs" />
+    <Compile Include="Activations\Identity.cs" />
+    <Compile Include="Activations\Softmax.cs" />
+    <Compile Include="Activations\LeakyReLUShaders.cs" />
+    <Compile Include="Activations\LeakyReLU.cs" />
+    <Compile Include="Activations\ReLUShaders.cs" />
+    <Compile Include="Activations\ReLU.cs" />
+    <Compile Include="Activations\Tanh.cs" />
+    <Compile Include="Activations\Sigmoid.cs" />
+    <Compile Include="Activations\SigmoidShaders.cs" />
+    <Compile Include="Activations\SoftmaxShaders.cs" />
+    <Compile Include="Activations\TanhShaders.cs" />
+    <Compile Include="ArrayDataIterator.cs" />
+    <Compile Include="DSSDataIterator.cs" />
+    <Compile Include="DSS\DSSDataTypes.cs" />
+    <Compile Include="DSS\DSSExtensions.cs" />
+    <Compile Include="DSS\DSSReader.cs" />
+    <Compile Include="DSS\DSSWriter.cs" />
+    <Compile Include="GPUTensorProcesserApplier.cs" />
+    <Compile Include="GradientDescent\GradientClipper.cs" />
+    <Compile Include="GradientDescent\GradientClippingInfo.cs" />
+    <Compile Include="GradientDescent\GradientDescentTrainer.cs" />
+    <Compile Include="GradientDescent\GradientEstimator.cs" />
+    <Compile Include="GradientDescent\IGradientDescent.cs" />
+    <Compile Include="IDataIterator.cs" />
+    <Compile Include="IDXDataIterator.cs" />
+    <Compile Include="IDX\BufferReadingMethod.cs" />
+    <Compile Include="IDX\CS\CSTexture2DIDXReader.cs" />
+    <Compile Include="IDX\CS\SBufferIDXReader.cs" />
+    <Compile Include="IDX\CS\TextureReadingMethod.cs" />
+    <Compile Include="IDX\IDXDataTypes.cs" />
+    <Compile Include="IDX\IDXExtensions.cs" />
+    <Compile Include="IDX\IDXReader.cs" />
+    <Compile Include="IDX\IDXWriter.cs" />
+    <Compile Include="IModel.cs" />
+    <Compile Include="Loss\CrossEntropy.cs" />
+    <Compile Include="Loss\CrossEntropyShaders.cs" />
+    <Compile Include="Loss\ILoss.cs" />
+    <Compile Include="Loss\MSE.cs" />
+    <Compile Include="Loss\MSEShaders.cs" />
+    <Compile Include="MNIST\MNIST.cs" />
+    <Compile Include="MNIST\MNISTDataIterator.cs" />
+    <Compile Include="MNIST\MNISTShaders.cs" />
+    <Compile Include="Models\ConvDerCalculator.cs" />
+    <Compile Include="Models\ConvolutionLayer.cs" />
+    <Compile Include="Models\ConvolutionShaders.cs" />
+    <Compile Include="Models\Dropout.cs" />
+    <Compile Include="Models\DropoutShaders.cs" />
+    <Compile Include="Models\FCLShaders.cs" />
+    <Compile Include="Models\FlatLayer.cs" />
+    <Compile Include="Models\FullyConnectedLayer.cs" />
+    <Compile Include="Models\GaussianLayer.cs" />
+    <Compile Include="Models\LayeredModel.cs" />
+    <Compile Include="Models\LSTM.cs" />
+    <Compile Include="Models\MaxPoolLayer.cs" />
+    <Compile Include="Models\MaxPoolShaders.cs" />
+    <Compile Include="Models\MultiHeadLayer.cs" />
+    <Compile Include="Models\MultiHeadLayerHelper.cs" />
+    <Compile Include="Models\ProcessorConverter.cs" />
+    <Compile Include="Models\RecurrentCaller.cs" />
+    <Compile Include="Models\RecurrentLayer.cs" />
+    <Compile Include="Models\ReverseFlatLayer.cs" />
+    <Compile Include="Models\TensorFlatShaders.cs" />
+    <Compile Include="Models\VectorConcatenationLayer.cs" />
+    <Compile Include="Models\ZeroPadding.cs" />
+    <Compile Include="Optimizers\AdaBound.cs" />
+    <Compile Include="Optimizers\AdamShaders.cs" />
+    <Compile Include="Optimizers\IOptimizer.cs" />
+    <Compile Include="Optimizers\Adam.cs" />
+    <Compile Include="Optimizers\SGD.cs" />
+    <Compile Include="Optimizers\SGDM.cs" />
+    <Compile Include="Optimizers\SGDShaders.cs" />
+    <Compile Include="Optimizers\SWATS.cs" />
+    <Compile Include="ProcessorType.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SequenceType.cs" />
+    <Compile Include="Tensor.cs" />
+    <Compile Include="TensorBox.cs" />
+    <Compile Include="TensorData.cs" />
+    <Compile Include="Utilities\Float4.cs" />
+    <Compile Include="Utilities\GaussianTensor.cs" />
+    <Compile Include="Utilities\GaussianTensorShaders.cs" />
+    <Compile Include="Utilities\Int12.cs" />
+    <Compile Include="Utilities\Int1Float3.cs" />
+    <Compile Include="Utilities\Int2Float2.cs" />
+    <Compile Include="Utilities\Int3Float1.cs" />
+    <Compile Include="Utilities\Int4.cs" />
+    <Compile Include="Utilities\Int8.cs" />
+    <Compile Include="Utilities\TensorOperations.cs" />
+    <Compile Include="Utilities\TensorOperationShaders.cs" />
+    <Compile Include="Utilities\TensorGPUSummation.cs" />
+    <Compile Include="Utilities\TensorSummationShaders.cs" />
+    <Compile Include="Utilities\UtilitiesFuncs.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="ReinforcementLearning\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
